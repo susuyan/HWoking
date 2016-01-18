@@ -11,10 +11,12 @@
 #import "DetailViewController.h"
 #import "EZScanPhotoVC.h"
 #import "SystemServicesDemoDiskViewController.h"
+#import "SystemServices.h"
+#import "HDefaults.h"
 #define totaltime 3*60*60
 
 #define totalusetime (19*60+45)*60
-
+#define SystemSharedServices [SystemServices sharedServices]
 
 @interface EZIndexViewController ()<UIGestureRecognizerDelegate> {
 
@@ -92,7 +94,7 @@
     CABasicAnimation *rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.delegate = self;
-    rotationAnimation.toValue = [NSNumber numberWithFloat: -M_PI_2 * 8];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: - M_PI_2 * 8];
     rotationAnimation.duration = 3;
     rotationAnimation.repeatCount = 1.0;
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
@@ -109,6 +111,8 @@
             NSLog(@"动画结束");
             [self displayDeviceInfo];
             
+            [self setupOptimizeButton];
+            
         }
     }
 }
@@ -118,8 +122,44 @@
  */
 - (void)setupDeviceName {
     //TODO: 获取设备名字
+    self.deviceNameLabel.text = [SystemSharedServices systemName];
 }
 
+/**
+ *  设置优化按钮的状态
+ */
+- (void)setupOptimizeButton {
+    switch ([self deviceOptimizeJudge]) {
+        case 0:
+        {
+            [self.optimizeButton setBackgroundImage:[UIImage imageNamed:@"optimize_btn_bg_4"] forState:UIControlStateNormal];
+            [self.optimizeButton setTitle:@"状态最佳" forState:UIControlStateNormal];
+            
+        }
+            break;
+        case 1:
+        {
+            [self.optimizeButton setBackgroundImage:[UIImage imageNamed:@"optimize_btn_bg_2"] forState:UIControlStateNormal];
+            [self.optimizeButton setTitle:@"状态良好" forState:UIControlStateNormal];
+        }
+            break;
+        case 2:
+        {
+            [self.optimizeButton setBackgroundImage:[UIImage imageNamed:@"optimize_btn_bg_1"] forState:UIControlStateNormal];
+            [self.optimizeButton setTitle:@"建议优化" forState:UIControlStateNormal];
+        }
+            break;
+        case 4:
+        {
+            [self.optimizeButton setBackgroundImage:[UIImage imageNamed:@"optimize_btn_bg_3"] forState:UIControlStateNormal];
+            [self.optimizeButton setTitle:@"立即优化" forState:UIControlStateNormal];
+        }
+            break;
+
+        default:
+            break;
+    }
+}
 #pragma mark - Event Handle
 /**
  *  显示设备信息
@@ -127,16 +167,25 @@
  */
 - (void)displayDeviceInfo {
     //TODO: 获取设备可用空间，并设置
-    
+    self.deviceFreeSpaceLabel.text = [NSString stringWithFormat:@"可用空间%@",[SystemSharedServices freeDiskSpaceinRaw]];
 }
 
 /**
  *  优化建议判断
  */
-- (void)deviceOptimizeJudge {
+- (int)deviceOptimizeJudge {
     //TODO: 1. 是否开启防骚扰 2. 网络测速保证用户一天点一次 3. 看可用空间是否大于600M
+    int optimizeNums = 0;
+    if (![HDefaults sharedDefaults].isOpenHarassment) {
+        ++optimizeNums;
+    }
+    if (![HDefaults sharedDefaults].isTestedSpeed) {
+        ++optimizeNums;
+    }
     
+    return optimizeNums;
 }
+
 
 #pragma mark - IBAction
 

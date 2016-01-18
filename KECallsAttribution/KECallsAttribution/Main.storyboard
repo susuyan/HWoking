@@ -1918,10 +1918,10 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7I-7P-he1">
-                                <rect key="frame" x="0.0" y="388" width="320" height="180"/>
+                                <rect key="frame" x="0.0" y="358" width="320" height="210"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CZ-IA-tkX">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="105"/>
                                         <state key="normal" image="fangsaorao">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1931,7 +1931,7 @@ Cg
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcz-5Q-He5">
-                                        <rect key="frame" x="160" y="0.0" width="160" height="90"/>
+                                        <rect key="frame" x="160" y="0.0" width="160" height="105"/>
                                         <state key="normal" image="wangluocesu">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1941,7 +1941,7 @@ Cg
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2a-MR-Fga">
-                                        <rect key="frame" x="160" y="90" width="160" height="90"/>
+                                        <rect key="frame" x="160" y="105" width="160" height="105"/>
                                         <state key="normal" image="gengduo">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1951,7 +1951,7 @@ Cg
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taN-qh-BLi">
-                                        <rect key="frame" x="0.0" y="90" width="160" height="90"/>
+                                        <rect key="frame" x="0.0" y="105" width="160" height="105"/>
                                         <state key="normal" image="zhaopianzhengli">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1975,7 +1975,7 @@ Cg
                                     <constraint firstItem="qcz-5Q-He5" firstAttribute="top" secondItem="l7I-7P-he1" secondAttribute="top" id="Wk1-9m-Xyo"/>
                                     <constraint firstItem="4CZ-IA-tkX" firstAttribute="top" secondItem="l7I-7P-he1" secondAttribute="top" id="WzK-oO-d7N"/>
                                     <constraint firstAttribute="trailing" secondItem="qcz-5Q-He5" secondAttribute="trailing" id="ZXu-CF-6KP"/>
-                                    <constraint firstAttribute="height" constant="180" id="oFZ-WV-WmD"/>
+                                    <constraint firstAttribute="height" constant="210" id="oFZ-WV-WmD"/>
                                     <constraint firstItem="4CZ-IA-tkX" firstAttribute="width" secondItem="l7I-7P-he1" secondAttribute="width" multiplier="1:2" id="qWL-hL-syy"/>
                                     <constraint firstItem="taN-qh-BLi" firstAttribute="height" secondItem="4CZ-IA-tkX" secondAttribute="height" id="unb-dX-suL"/>
                                     <constraint firstItem="g2a-MR-Fga" firstAttribute="width" secondItem="qcz-5Q-He5" secondAttribute="width" id="vVZ-BN-EMI"/>
@@ -1984,10 +1984,10 @@ Cg
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siu-ir-Sng">
-                                <rect key="frame" x="0.0" y="64" width="320" height="324"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="294"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="index_top_bg" translatesAutoresizingMaskIntoConstraints="NO" id="oIP-PC-cYX">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="324"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="294"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_bg" translatesAutoresizingMaskIntoConstraints="NO" id="gu4-9g-dzH">
                                         <rect key="frame" x="74" y="40" width="172" height="172"/>
@@ -2001,15 +2001,17 @@ Cg
                                             <constraint firstAttribute="width" secondItem="bVf-oQ-kQH" secondAttribute="height" multiplier="1:1" id="SMJ-ke-H2E"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-GL-7KW">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-GL-7KW">
                                         <rect key="frame" x="85" y="230" width="150" height="40"/>
-                                        <color key="backgroundColor" red="0.27058823529411763" green="0.82745098039215681" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Fkv-mz-d5U"/>
                                             <constraint firstAttribute="width" constant="150" id="TNQ-FV-jan"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="立即优化"/>
+                                        <state key="normal" title="立即优化" backgroundImage="optimize_btn_bg_1">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="optimizeAction:" destination="1qQ-bz-zdY" eventType="touchUpInside" id="TvA-OV-RxD"/>
                                         </connections>
@@ -2020,8 +2022,8 @@ Cg
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可用空间580M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aow-tf-t1T">
-                                        <rect key="frame" x="119" y="166" width="82" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aow-tf-t1T">
+                                        <rect key="frame" x="160" y="166" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -5854,6 +5856,7 @@ Cg
         <image name="mark_button" width="233" height="41"/>
         <image name="marry" width="49" height="49"/>
         <image name="module_bg" width="10" height="10"/>
+        <image name="optimize_btn_bg_1" width="150" height="40"/>
         <image name="performance_o" width="54" height="54"/>
         <image name="protect_icon" width="132" height="132"/>
         <image name="quick_action" width="250" height="35"/>
