@@ -167,10 +167,7 @@
     [[UINavigationBar appearance] setTitleTextAttributes:titelDictionary];
     
     
-    
-    
-    
-     [MobClick startWithAppkey:UMENG_APP_ID reportPolicy:BATCH channelId:@"App Store"];
+    [MobClick startWithAppkey:UMENG_APP_ID reportPolicy:BATCH channelId:@"App Store"];
     //[MobClick startWithAppkey:UMENG_APP_ID reportPolicy:BATCH channelId:@"91 Platform"];
     [MobClick setVersion:[VERSION integerValue]];
     

@@ -16,6 +16,10 @@
 
 @property (nonatomic, copy) NSString *localeString;
 
+@property (nonatomic) BOOL isHintFreeSpace;
+
+@property (nonatomic) BOOL isTestedSpeed;
+
 + (instancetype)sharedDefaults;
 
 @end

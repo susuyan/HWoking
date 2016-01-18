@@ -10,30 +10,18 @@
 #import "VWWWaterView.h"
 @interface EZIndexViewController : UIViewController
 
-{
-
-   
-    
-    
-   
-
-
-}
-@property (weak, nonatomic) IBOutlet UILabel *chargeTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *lbl_fullTime;
-@property (weak, nonatomic) IBOutlet UILabel *batteryLevelLbl;
-@property (weak, nonatomic) IBOutlet VWWWaterView *waveView;
-
-
 @property (weak, nonatomic) IBOutlet UIView *upView;
-
 @property (weak, nonatomic) IBOutlet UIView *moreView;
-
-
 @property (weak, nonatomic) IBOutlet UIButton *cleanButton;
 
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *upViewHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIImageView *circleImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *deviceNameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *deviceFreeSpaceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *optimizeButton;
 
 - (IBAction)wallpaperPage:(UIButton *)sender;
 

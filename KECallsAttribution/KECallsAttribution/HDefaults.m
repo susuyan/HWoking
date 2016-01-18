@@ -19,9 +19,13 @@ static HDefaults *defaults;
         defaults = [[HDefaults alloc] init];
       
     });
-    defaults.localeString = [[NSUserDefaults standardUserDefaults] stringForKey:@"localeString"];
-    defaults.isOpenHarassment = [[NSUserDefaults standardUserDefaults] boolForKey:@"openHarassment"];
-    defaults.isReachable = [[NSUserDefaults standardUserDefaults] boolForKey:@"isReachable"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    defaults.localeString = [userDefaults stringForKey:@"localeString"];
+    defaults.isOpenHarassment = [userDefaults boolForKey:@"openHarassment"];
+    defaults.isReachable = [userDefaults boolForKey:@"isReachable"];
+    
+    defaults.isHintFreeSpace = [userDefaults boolForKey:@"HintFreeSpace"];
+    defaults.isTestedSpeed = [userDefaults boolForKey:@"TestedSpeed"];
     
     return defaults;
 }

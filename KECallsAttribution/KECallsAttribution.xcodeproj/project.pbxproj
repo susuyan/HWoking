@@ -1686,7 +1686,7 @@
 			isa = PBXGroup;
 			children = (
 				93F5EF5418EC013B00BC6FCD /* KECallsAttribution */,
-				AA385D341B156524007A4220 /* New Group */,
+				AA385D341B156524007A4220 /* Resource */,
 				93F5EF7118EC013B00BC6FCD /* KECallsAttributionTests */,
 				93F5EF4B18EC013B00BC6FCD /* Frameworks */,
 				93F5EF4A18EC013B00BC6FCD /* Products */,
@@ -1847,7 +1847,7 @@
 			path = JPushSDK;
 			sourceTree = "<group>";
 		};
-		AA385D341B156524007A4220 /* New Group */ = {
+		AA385D341B156524007A4220 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				AA1B7AE61B185EAE00410AD3 /* contact.vcf */,
@@ -1856,7 +1856,7 @@
 				C2D80F471C41128700BC444A /* iTunesArtwork@2x */,
 				C2D80F4B1C4112E700BC444A /* icon120.png */,
 			);
-			name = "New Group";
+			name = Resource;
 			sourceTree = "<group>";
 		};
 		AA385D351B156531007A4220 /* cesu */ = {
