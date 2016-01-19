@@ -13,6 +13,7 @@
 #import "SystemServicesDemoDiskViewController.h"
 #import "SystemServices.h"
 #import "HDefaults.h"
+#import "UIDevice+HInfo.h"
 #define totaltime 3*60*60
 
 #define totalusetime (19*60+45)*60
@@ -121,8 +122,8 @@
  *  获取设备名字，并设置
  */
 - (void)setupDeviceName {
-    //TODO: 获取设备名字
-    self.deviceNameLabel.text = [SystemSharedServices systemName];
+
+    self.deviceNameLabel.text = [UIDevice devicenName];
 }
 
 /**

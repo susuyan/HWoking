@@ -5786,10 +5786,153 @@ Cg
             </objects>
             <point key="canvasLocation" x="-4773" y="3823"/>
         </scene>
+        <!--Status Test Controller-->
+        <scene sceneID="Qu6-Kn-XOC">
+            <objects>
+                <tableViewController storyboardIdentifier="YUStatusTestController" id="kkp-cR-aj4" customClass="YUStatusTestController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IAN-Oi-2du">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="rv2-Ms-tuw">
+                            <rect key="frame" x="0.0" y="64" width="320" height="127"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMV-Gf-3ya">
+                                    <rect key="frame" x="130" y="65" width="22" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                    <color key="textColor" red="0.80392156859999997" green="0.79607843140000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="个优化建议" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoY-gy-NKH">
+                                    <rect key="frame" x="157" y="74" width="94" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="status_phone_icon" translatesAutoresizingMaskIntoConstraints="NO" id="3tX-Td-p9H">
+                                    <rect key="frame" x="40" y="31" width="59" height="59"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fresh_state_1" translatesAutoresizingMaskIntoConstraints="NO" id="5xj-YL-Svx">
+                                    <rect key="frame" x="69" y="64" width="18" height="15"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="您的iPhone 5s有" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrw-rd-Ztu">
+                                    <rect key="frame" x="116" y="15" width="177" height="51"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.1176470588" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="STATUS_CELL_ID" selectionStyle="default" indentationWidth="10" reuseIdentifier="STATUS_CELL_ID" rowHeight="156" id="r7k-c8-hVa" customClass="YUStatusViewCell">
+                                <rect key="frame" x="0.0" y="213" width="320" height="156"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r7k-c8-hVa" id="ppT-fd-qSk">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S1o-4n-i5h">
+                                            <rect key="frame" x="8" y="7" width="304" height="148"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="merge_icon" translatesAutoresizingMaskIntoConstraints="NO" id="iaV-4o-zN1">
+                                                    <rect key="frame" x="12" y="19" width="45" height="45"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1t-Bm-9pl">
+                                                    <rect key="frame" x="12" y="98" width="280" height="40"/>
+                                                    <color key="backgroundColor" red="0.1176470588" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                    <state key="normal" title="立即优化">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="6"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="optimizeAction:" destination="r7k-c8-hVa" eventType="touchUpInside" id="6I6-Og-Ps5"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="重复或不完整联系人会降低平时打电话的效率，建议定期检查优化" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4I-ec-4tJ">
+                                                    <rect key="frame" x="78" y="41" width="207" height="35"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="合并重复联系人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1F-Wz-oNI">
+                                                    <rect key="frame" x="78" y="13" width="198" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="statusCardButton" destination="O1t-Bm-9pl" id="D2R-VA-i1U"/>
+                                    <outlet property="statusCardDetailTitle" destination="J4I-ec-4tJ" id="ayY-nM-HDj"/>
+                                    <outlet property="statusCardIcon" destination="iaV-4o-zN1" id="Hgm-eK-Ssb"/>
+                                    <outlet property="statusCardTitle" destination="C1F-Wz-oNI" id="cqS-gp-ZCp"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kkp-cR-aj4" id="T1E-pi-YKi"/>
+                            <outlet property="delegate" destination="kkp-cR-aj4" id="0rI-om-cKf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7uf-CR-uWS">
+                        <barButtonItem key="leftBarButtonItem" image="backItemImage.png" id="3fW-nH-TrT">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backAction:" destination="kkp-cR-aj4" id="rFz-3q-YDa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="deviceNameLabel" destination="wrw-rd-Ztu" id="7zZ-gn-Cg4"/>
+                        <outlet property="freshImageView" destination="5xj-YL-Svx" id="vGq-59-uvq"/>
+                        <outlet property="suggestionNumLabel" destination="fMV-Gf-3ya" id="67a-6N-pmY"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="edQ-za-Lde" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2147" y="-3718"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PG9-Ig-stB">
+            <objects>
+                <navigationController storyboardIdentifier="YUStatusTestNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nrd-p0-4FU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nbx-qu-bHg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kkp-cR-aj4" kind="relationship" relationship="rootViewController" id="CIR-Cc-8fi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C01-Om-jjy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2518" y="-3712"/>
+        </scene>
     </scenes>
     <resources>
         <image name="alltype" width="45" height="45"/>
         <image name="baby" width="49" height="49"/>
+        <image name="backItemImage.png" width="208" height="208"/>
         <image name="back_button" width="32" height="32"/>
         <image name="background" width="320" height="568"/>
         <image name="banbenxinxi" width="25" height="25"/>
@@ -5818,6 +5961,7 @@ Cg
         <image name="fankuiyijian" width="25" height="25"/>
         <image name="fenxianghaoyou" width="25" height="25"/>
         <image name="food_u" width="54" height="54"/>
+        <image name="fresh_state_1" width="208" height="208"/>
         <image name="geiwopingfen" width="25" height="25"/>
         <image name="gengduo" width="159" height="89"/>
         <image name="gengduo_high" width="159" height="89"/>
@@ -5855,6 +5999,7 @@ Cg
         <image name="map_car" width="49" height="49"/>
         <image name="mark_button" width="233" height="41"/>
         <image name="marry" width="49" height="49"/>
+        <image name="merge_icon" width="208" height="208"/>
         <image name="module_bg" width="10" height="10"/>
         <image name="optimize_btn_bg_1" width="150" height="40"/>
         <image name="performance_o" width="54" height="54"/>
@@ -5876,6 +6021,7 @@ Cg
         <image name="shoppingmall" width="49" height="49"/>
         <image name="shoujidingwei" width="75" height="102"/>
         <image name="shoujidingwei_high" width="75" height="102"/>
+        <image name="status_phone_icon" width="208" height="208"/>
         <image name="text_tips" width="200" height="27"/>
         <image name="wangluocesu" width="159" height="89"/>
         <image name="wangluocesu_high" width="159" height="89"/>

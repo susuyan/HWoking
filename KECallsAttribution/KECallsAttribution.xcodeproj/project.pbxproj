@@ -284,6 +284,7 @@
 		AA5BFFBE1B13097D0023D905 /* SSProcessorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5BFFA41B13097D0023D905 /* SSProcessorInfo.m */; };
 		AA5BFFBF1B13097D0023D905 /* SSUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5BFFA61B13097D0023D905 /* SSUUID.m */; };
 		C207A4A91C24EB02009CB12D /* contact_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C207A4A81C24EB02009CB12D /* contact_icon.png */; };
+		C24736911C4DD5D0009E64AC /* UIDevice+HInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C24736901C4DD5D0009E64AC /* UIDevice+HInfo.m */; };
 		C265A1731C2E33DA00CE9C72 /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1651C2E33DA00CE9C72 /* ChannelView.m */; };
 		C265A1741C2E33DA00CE9C72 /* checkImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1671C2E33DA00CE9C72 /* checkImage.m */; };
 		C265A1751C2E33DA00CE9C72 /* EZAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1691C2E33DA00CE9C72 /* EZAppHelper.m */; };
@@ -814,6 +815,8 @@
 		AA5BFFA71B13097D0023D905 /* SystemServicesConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemServicesConstants.h; sourceTree = "<group>"; };
 		B58C887D97C4E961396BA5AF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C207A4A81C24EB02009CB12D /* contact_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact_icon.png; sourceTree = "<group>"; };
+		C247368F1C4DD5D0009E64AC /* UIDevice+HInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HInfo.h"; sourceTree = "<group>"; };
+		C24736901C4DD5D0009E64AC /* UIDevice+HInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+HInfo.m"; sourceTree = "<group>"; };
 		C265A1641C2E33DA00CE9C72 /* ChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelView.h; sourceTree = "<group>"; };
 		C265A1651C2E33DA00CE9C72 /* ChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelView.m; sourceTree = "<group>"; };
 		C265A1661C2E33DA00CE9C72 /* checkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkImage.h; sourceTree = "<group>"; };
@@ -1733,6 +1736,7 @@
 		93F5EF5418EC013B00BC6FCD /* KECallsAttribution */ = {
 			isa = PBXGroup;
 			children = (
+				C247368E1C4DD587009E64AC /* Utils */,
 				93F5EF5D18EC013B00BC6FCD /* KBAppDelegate.h */,
 				93F5EF5E18EC013B00BC6FCD /* KBAppDelegate.m */,
 				93F5F07918EC043100BC6FCD /* Main.storyboard */,
@@ -1934,6 +1938,15 @@
 			);
 			name = Utilities;
 			path = "../System Services/Utilities";
+			sourceTree = "<group>";
+		};
+		C247368E1C4DD587009E64AC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C247368F1C4DD5D0009E64AC /* UIDevice+HInfo.h */,
+				C24736901C4DD5D0009E64AC /* UIDevice+HInfo.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		C265A1341C2E233400CE9C72 /* 照片清理 */ = {
@@ -2418,6 +2431,7 @@
 				93CF3B2A18ED366C00BA8043 /* KBLunarCalendarViewController.m in Sources */,
 				931D3F6F18FD232900B4A946 /* PullTableView.m in Sources */,
 				8D79A49D19BEE18F00F04AD4 /* ECQuickContractController.m in Sources */,
+				C24736911C4DD5D0009E64AC /* UIDevice+HInfo.m in Sources */,
 				8D01F7AE1980AD9100C0A3BC /* ECResultHeaderViewController.m in Sources */,
 				AA5BFFB71B13097D0023D905 /* SSDiskInfo.m in Sources */,
 				C276F7AE1C23D4130035A7E7 /* HPromptView.m in Sources */,
