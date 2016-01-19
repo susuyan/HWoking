@@ -14,18 +14,13 @@
 #import "SystemServices.h"
 #import "HDefaults.h"
 #import "UIDevice+HInfo.h"
+#import "HOptimizeTableViewController.h"
 #define totaltime 3*60*60
 
 #define totalusetime (19*60+45)*60
 #define SystemSharedServices [SystemServices sharedServices]
 
-@interface EZIndexViewController ()<UIGestureRecognizerDelegate> {
-
-    NSTimer *batteryFullTimer;
-    int needTime;
-    int canUseTime;
-}
-
+@interface EZIndexViewController ()<UIGestureRecognizerDelegate>
 
 
 @end
@@ -42,21 +37,29 @@
     
     if (kIsIPhone4) {
         self.upViewHeightConstraint.constant = 180;
+        self.circleTopContraint.constant = 10;
+        self.circleLeftContraint.constant = 80;
+        self.logobgTopConstraint.constant = 10;
+        self.logobgLeftConstraint.constant = 80;
     }
     
     self.moreView.hidden = YES;
+    self.optimizeButton.hidden = YES;
     [self setupCleanButton];
     
     [self setupDeviceName];
     
     [self setupAnimation];
     
+
     
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:@"index"];
+    [self setupOptimizeButton];
+    
 }
 -(void)viewWillDisappear:(BOOL)animated {
 
@@ -114,6 +117,15 @@
             
             [self setupOptimizeButton];
             
+
+            [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.detectionLabel.hidden = YES;
+                self.optimizeButton.hidden = NO;
+            } completion:^(BOOL finished) {
+                self.optimizeButton.hidden = NO;
+            }];
+           
+            
         }
     }
 }
@@ -130,9 +142,11 @@
  *  设置优化按钮的状态
  */
 - (void)setupOptimizeButton {
+    self.optimizeButton.enabled = YES;
     switch ([self deviceOptimizeJudge]) {
         case 0:
         {
+            self.optimizeButton.enabled = NO;
             [self.optimizeButton setBackgroundImage:[UIImage imageNamed:@"optimize_btn_bg_4"] forState:UIControlStateNormal];
             [self.optimizeButton setTitle:@"状态最佳" forState:UIControlStateNormal];
             
@@ -150,7 +164,7 @@
             [self.optimizeButton setTitle:@"建议优化" forState:UIControlStateNormal];
         }
             break;
-        case 4:
+        case 3:
         {
             [self.optimizeButton setBackgroundImage:[UIImage imageNamed:@"optimize_btn_bg_3"] forState:UIControlStateNormal];
             [self.optimizeButton setTitle:@"立即优化" forState:UIControlStateNormal];
@@ -180,10 +194,13 @@
     if (![HDefaults sharedDefaults].isOpenHarassment) {
         ++optimizeNums;
     }
-    if (![HDefaults sharedDefaults].isTestedSpeed) {
+    if ([HDefaults sharedDefaults].isTestedSpeed) {
         ++optimizeNums;
     }
     
+    if ([HDefaults sharedDefaults].isHintFreeSpace) {
+        ++optimizeNums;
+    }
     return optimizeNums;
 }
 
@@ -191,7 +208,8 @@
 #pragma mark - IBAction
 
 - (IBAction)optimizeAction:(UIButton *)sender {
-    
+    HOptimizeTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"HOptimizeTableViewController"];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)cleanPhotoAction:(UIButton *)sender {

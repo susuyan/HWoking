@@ -126,7 +126,11 @@
 //                                    repeats:YES];
 }
 - (IBAction)btn_CeSu:(UIButton *)sender {
+    NSDate *mdate = [NSDate date];
+    [[NSUserDefaults standardUserDefaults] setObject:mdate forKey:@"lastTestSpeedDate"];
     [self saveData];
+    
+    
 }
 - (IBAction)btn_Back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

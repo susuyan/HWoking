@@ -9,6 +9,8 @@
 #import "UIDevice+HInfo.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#include <sys/param.h>
+#include <sys/mount.h>
 
 @implementation UIDevice (HInfo)
 #pragma mark - Private
@@ -82,5 +84,14 @@
     
     return platform;
 
+}
+
++ (float) freeDiskSpaceInBytes{
+    struct statfs buf;
+    long long freespace = -1;
+    if(statfs("/var", &buf) >= 0){
+        freespace = (long long)(buf.f_bsize * buf.f_bfree);
+    }
+    return freespace/1024/1024;
 }
 @end

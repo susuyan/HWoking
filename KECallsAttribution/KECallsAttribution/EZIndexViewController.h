@@ -16,12 +16,20 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *upViewHeightConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *circleTopContraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *circleLeftContraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logobgTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logobgLeftConstraint;
+
 @property (weak, nonatomic) IBOutlet UIImageView *circleImageView;
 
 @property (weak, nonatomic) IBOutlet UILabel *deviceNameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *deviceFreeSpaceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *optimizeButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *detectionLabel;
+
 
 - (IBAction)wallpaperPage:(UIButton *)sender;
 

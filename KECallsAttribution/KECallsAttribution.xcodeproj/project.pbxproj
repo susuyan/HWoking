@@ -285,6 +285,8 @@
 		AA5BFFBF1B13097D0023D905 /* SSUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5BFFA61B13097D0023D905 /* SSUUID.m */; };
 		C207A4A91C24EB02009CB12D /* contact_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C207A4A81C24EB02009CB12D /* contact_icon.png */; };
 		C24736911C4DD5D0009E64AC /* UIDevice+HInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C24736901C4DD5D0009E64AC /* UIDevice+HInfo.m */; };
+		C24736951C4DE438009E64AC /* HOptimizeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24736941C4DE438009E64AC /* HOptimizeTableViewController.m */; };
+		C24736981C4DE881009E64AC /* HOptimizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24736971C4DE881009E64AC /* HOptimizeCell.m */; };
 		C265A1731C2E33DA00CE9C72 /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1651C2E33DA00CE9C72 /* ChannelView.m */; };
 		C265A1741C2E33DA00CE9C72 /* checkImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1671C2E33DA00CE9C72 /* checkImage.m */; };
 		C265A1751C2E33DA00CE9C72 /* EZAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1691C2E33DA00CE9C72 /* EZAppHelper.m */; };
@@ -817,6 +819,10 @@
 		C207A4A81C24EB02009CB12D /* contact_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact_icon.png; sourceTree = "<group>"; };
 		C247368F1C4DD5D0009E64AC /* UIDevice+HInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HInfo.h"; sourceTree = "<group>"; };
 		C24736901C4DD5D0009E64AC /* UIDevice+HInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+HInfo.m"; sourceTree = "<group>"; };
+		C24736931C4DE438009E64AC /* HOptimizeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptimizeTableViewController.h; sourceTree = "<group>"; };
+		C24736941C4DE438009E64AC /* HOptimizeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptimizeTableViewController.m; sourceTree = "<group>"; };
+		C24736961C4DE881009E64AC /* HOptimizeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptimizeCell.h; sourceTree = "<group>"; };
+		C24736971C4DE881009E64AC /* HOptimizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptimizeCell.m; sourceTree = "<group>"; };
 		C265A1641C2E33DA00CE9C72 /* ChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelView.h; sourceTree = "<group>"; };
 		C265A1651C2E33DA00CE9C72 /* ChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelView.m; sourceTree = "<group>"; };
 		C265A1661C2E33DA00CE9C72 /* checkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkImage.h; sourceTree = "<group>"; };
@@ -1736,6 +1742,7 @@
 		93F5EF5418EC013B00BC6FCD /* KECallsAttribution */ = {
 			isa = PBXGroup;
 			children = (
+				C24736921C4DE3E8009E64AC /* 检测优化 */,
 				C247368E1C4DD587009E64AC /* Utils */,
 				93F5EF5D18EC013B00BC6FCD /* KBAppDelegate.h */,
 				93F5EF5E18EC013B00BC6FCD /* KBAppDelegate.m */,
@@ -1947,6 +1954,17 @@
 				C24736901C4DD5D0009E64AC /* UIDevice+HInfo.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		C24736921C4DE3E8009E64AC /* 检测优化 */ = {
+			isa = PBXGroup;
+			children = (
+				C24736931C4DE438009E64AC /* HOptimizeTableViewController.h */,
+				C24736941C4DE438009E64AC /* HOptimizeTableViewController.m */,
+				C24736961C4DE881009E64AC /* HOptimizeCell.h */,
+				C24736971C4DE881009E64AC /* HOptimizeCell.m */,
+			);
+			name = "检测优化";
 			sourceTree = "<group>";
 		};
 		C265A1341C2E233400CE9C72 /* 照片清理 */ = {
@@ -2392,6 +2410,7 @@
 				8D8C359B1A304C1B0046BEC6 /* EZResultTableVC.m in Sources */,
 				8DEC2C141AB189D800D2F673 /* JSBubbleMessageCell.m in Sources */,
 				93F5F07718EC038E00BC6FCD /* KEWelcomeViewController.m in Sources */,
+				C24736951C4DE438009E64AC /* HOptimizeTableViewController.m in Sources */,
 				C276F77B1C23D3B20035A7E7 /* HSQLHelper.m in Sources */,
 				C276F77F1C23D3B20035A7E7 /* HDefaults.m in Sources */,
 				8D38EB531A4285DB00D0EA62 /* ECCheaterCell.m in Sources */,
@@ -2445,6 +2464,7 @@
 				93F5F07518EC038E00BC6FCD /* KEStartViewController.m in Sources */,
 				C276F7B11C23D4130035A7E7 /* PendulumView.m in Sources */,
 				8D060A2D1AE66068003B80EF /* EZIndexViewController.m in Sources */,
+				C24736981C4DE881009E64AC /* HOptimizeCell.m in Sources */,
 				8D1681CC19E93117009C596F /* ECDeleteBlackListVC.m in Sources */,
 				AA5BFFB61B13097D0023D905 /* SSCarrierInfo.m in Sources */,
 				8D10B9B31A3A93220000EE31 /* CWStarRateView.m in Sources */,
