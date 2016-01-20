@@ -89,25 +89,39 @@
     }
     
     [self initialConstraint];
+    
+    
 }
+
 - (void)viewWillAppear:(BOOL)animated {
-    
-    
     [super viewWillAppear:animated];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     
-    
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
    // [self receiveKeyboardNotification];
-
+    
+    
 }
+
 - (void)dealloc {
     [self removeKeyboardNotification];
 }
 
+- (void)applicationWillEnterForeground {
+    [self pasteboardNumber];
+}
 #pragma mark - Private
+- (void)pasteboardNumber{
+    NSString *pastString = [UIPasteboard generalPasteboard].string;
+    self.phoneTxt.text = [self filterIllegalCharacterWithNumber:pastString];
+    NSLog(@"---粘贴板号码：%@----",[self filterIllegalCharacterWithNumber:pastString]);
+}
 
 - (void)receiveKeyboardNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -152,8 +166,12 @@
 }
 
 - (NSString *)filterIllegalCharacterWithNumber:(NSString *)number{
-    NSCharacterSet *illegalCharacter = [NSCharacterSet characterSetWithCharactersInString:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*;)_+ "];
+    NSCharacterSet *illegalCharacter = [NSCharacterSet characterSetWithCharactersInString:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*;)_+ -"];
+    
     number = [[number componentsSeparatedByCharactersInSet:illegalCharacter] componentsJoinedByString:@""];
+    
+    
+    
     return number;
 }
 
@@ -504,9 +522,12 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     string = [self filterIllegalCharacterWithNumber:string];
-    
+
     if (string.length > 7) {
         //处理粘贴
+        
+        self.phoneTxt.text = string;
+        NSLog(@"---粘贴板号码1：%@----",string);
         NSString *pasteStr = [string substringToIndex:8];
         if ([pasteStr hasPrefix:@"0"]) {
             //固话
