@@ -33,7 +33,9 @@
     currentSign=@"7dda216c0f371003681e03736feb3de2";
     // Do any additional setup after loading the view from its nib.
 }
-
+- (void)dealloc {
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -42,10 +44,7 @@
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
     
     
-    
-    
     self.tipsLbl.hidden=NO;
-    
     
     
     self.loadingLbl.hidden=YES;
@@ -57,9 +56,6 @@
     self.markLbl.text=@"";
     
     self.addressAndCarrierLbl.text=@"";
-    
-    
-    
     
     [self getCopyString];
     
@@ -123,7 +119,9 @@
     
     UIPasteboard *board=[UIPasteboard generalPasteboard];
     
-    copyNumber=board.string;
+    copyNumber = board.string;
+    copyNumber = [copyNumber componentsSeparatedByString:@"\n"][0];
+    
     
 }
 
@@ -131,7 +129,7 @@
 
 -(BOOL)matchNumber:(NSString *)str {
     
-    
+    str = [str componentsSeparatedByString:@"\n"][0];
     
     NSString *regEx=@"^[0-9]+$";
     
@@ -275,26 +273,14 @@
 
 -(void)getBlacklistData
 {
-    
-    
-    
-    
-    
-    
     __block  NSString *dataString;
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         
-        
-        
-        
-        
-        
         NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.so.com/s?ie=utf-8&shb=1&src=360sou_home&q=%@",copyNumber]];
         
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
-        
         
         
         
@@ -359,7 +345,7 @@
         
         
         //得到提交数据的长度
-        NSString* len = [NSString stringWithFormat:@"%d",[body length]];
+        NSString* len = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
         //添加一个http包头告诉服务器数据长度是多少
         [request setValue:len forHTTPHeaderField:@"Content-Length"];//???
         
@@ -420,7 +406,7 @@
                 {
                     
                     
-                    
+
                     
                     self.markLbl.text=@"未发现骚扰行为";
                     
@@ -454,13 +440,9 @@
     
     self.tipsLbl.hidden=NO;
     
-    
-    
     self.loadingLbl.hidden=YES;
     
-    
     self.showResultView.hidden=YES;
-    
     
     self.markLbl.text=@"";
     
@@ -473,8 +455,6 @@
 }
 
 - (IBAction)dailNumber:(UIButton *)sender {
-    
-    
     NSString *deviceType = [UIDevice currentDevice].model;
     if([deviceType  isEqualToString:@"iPod touch"]||[deviceType  isEqualToString:@"iPad"]||[deviceType  isEqualToString:@"iPhone Simulator"]){
         
@@ -491,9 +471,6 @@
     }
     
     
-    
-    
-    
     NSExtensionContext *context=[self extensionContext];
     
     //[context openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]] completionHandler:nil];
@@ -501,15 +478,10 @@
     
     NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",copyNumber]] ;
     
-    
-    
-    
+
     
     
     [context openURL:url completionHandler:^(BOOL success) {
-        
-        
-        
         
         
     }];

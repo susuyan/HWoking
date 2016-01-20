@@ -34,6 +34,7 @@
 
 @property(copy,nonatomic)NSString *databaseFilePath;
 @property(copy,nonatomic)NSString *query;
+@property(nonatomic, copy)NSString *pasteBoardString;
 @end
 
 @implementation EZIndexViewController
@@ -119,7 +120,17 @@
 #pragma mark - Private
 - (void)pasteboardNumber{
     NSString *pastString = [UIPasteboard generalPasteboard].string;
-    self.phoneTxt.text = [self filterIllegalCharacterWithNumber:pastString];
+    
+    if (self.pasteBoardString == nil) {
+        self.pasteBoardString = [self filterIllegalCharacterWithNumber:pastString];
+        self.phoneTxt.text = [self filterIllegalCharacterWithNumber:pastString];
+    }
+    if (self.pasteBoardString == [self filterIllegalCharacterWithNumber:pastString]) {
+        self.phoneTxt.text = @"";
+    }else {
+        self.phoneTxt.text = [self filterIllegalCharacterWithNumber:pastString];
+    }
+    
     NSLog(@"---粘贴板号码：%@----",[self filterIllegalCharacterWithNumber:pastString]);
 }
 
@@ -171,7 +182,7 @@
     number = [[number componentsSeparatedByCharactersInSet:illegalCharacter] componentsJoinedByString:@""];
     
     
-    
+    number = [number componentsSeparatedByString:@"\n"][0];
     return number;
 }
 
@@ -187,7 +198,7 @@
     
     
 }
--(void)changeTips {
+- (void)changeTips {
 
 
     if (tips_index==index_tips.count) {
