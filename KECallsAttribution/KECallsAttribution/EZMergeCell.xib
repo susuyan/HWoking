@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="contact" rowHeight="88" id="KGk-i7-Jjw" customClass="EZMergeCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HtY-c5-I7n">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="87"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTO-Fe-NQi">
+                        <rect key="frame" x="262" y="30" width="50" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="EIU-Gw-wG4"/>
+                            <constraint firstAttribute="height" constant="28" id="GbT-ye-EtY"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="merge_button">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted" backgroundImage="merge_high"/>
+                        <connections>
+                            <action selector="mergeContacts:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gdT-VY-3N1"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="HtY-c5-I7n" secondAttribute="bottom" id="8Ca-av-T2a"/>
+                    <constraint firstItem="HtY-c5-I7n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Awt-Z6-QzB"/>
+                    <constraint firstItem="HtY-c5-I7n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="BEb-vx-cDp"/>
+                    <constraint firstAttribute="centerY" secondItem="hTO-Fe-NQi" secondAttribute="centerY" id="c6z-sA-yfa"/>
+                    <constraint firstAttribute="trailing" secondItem="hTO-Fe-NQi" secondAttribute="trailing" constant="8" id="jUd-QZ-XLm"/>
+                    <constraint firstAttribute="trailing" secondItem="HtY-c5-I7n" secondAttribute="trailing" constant="70" id="r6t-jm-6pG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="moreTableView" destination="HtY-c5-I7n" id="dFW-zJ-E6y"/>
+            </connections>
+            <point key="canvasLocation" x="340" y="370"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="merge_button" width="41" height="23"/>
+        <image name="merge_high" width="41" height="23"/>
+    </resources>
+</document>

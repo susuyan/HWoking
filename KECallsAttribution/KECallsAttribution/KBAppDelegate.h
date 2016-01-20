@@ -10,8 +10,11 @@
 
 @interface KBAppDelegate : UIResponder <UIApplicationDelegate>
 {
-     NSTimer *checkTime;
+
    UIBackgroundTaskIdentifier backgroundTask;
+    
+    
+    NSDictionary *mPushInfo;
 }
 @property (strong, nonatomic) UIWindow *window;
 

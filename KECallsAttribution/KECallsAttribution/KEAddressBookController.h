@@ -19,7 +19,7 @@
 
 }
 - (IBAction)back:(UIButton *)sender;
-- (IBAction)updateAddressBook:(UIButton *)sender;
+
 - (IBAction)recoverAddressBook:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *contactsLabel;
 @property(strong,nonatomic)UISearchDisplayController *mySearchDisplayController;

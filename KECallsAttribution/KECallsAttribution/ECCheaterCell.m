@@ -53,11 +53,9 @@
 //}
 
 
-+(int)getCellHeightWith:(NSString *)detail font:(UIFont *)font width:(float)width
-{
++ (int)getCellHeightWith:(NSString *)detail font:(UIFont *)font width:(float)width {
 
     int height;
-    
     
     CGSize size= [detail sizeWithFont:font constrainedToSize:CGSizeMake(width, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
 
@@ -71,13 +69,10 @@
 }
 
 
--(void)setInfo:(NSDictionary *)info
-{
+-(void)setInfo:(NSDictionary *)info {
 
 
     self.telText.text=info[@"number"];
-    
-    
     
     
     NSString *time=info[@"create_time"];
@@ -95,22 +90,13 @@
     
     self.timeLbl.text=time;
     
-    
-    
-    
-    
+    self.detailLbl.numberOfLines = 0;
     self.detailLbl.text=info[@"detail"];
+    
     
     
     self.sourceLbl.text=[NSString stringWithFormat:@"来源：%@",info[@"ip"]];
     
-    
-    
-    
-
-
-
-
 }
 
 

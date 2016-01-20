@@ -8,7 +8,7 @@
 
 #import "KEWelcomeViewController.h"
 #import "KEStartViewController.h"
-#import "KEMainViewController.h"
+
 #import "EZIndexViewController.h"
 @interface KEWelcomeViewController ()
 
@@ -29,31 +29,29 @@
     [super viewDidAppear:animated];
     
     
-//    
-//     NSString *lastVersion=[[NSUserDefaults standardUserDefaults]objectForKey:@"lastVersion"];
-//    
-//    //新用户安装，或者老用户升级
-//    if (lastVersion==nil||[lastVersion floatValue]<[VERSION floatValue]) {
-//        
-//        [[NSUserDefaults standardUserDefaults]setObject:VERSION forKey:@"lastVersion"];
-//        
-//        [[NSUserDefaults standardUserDefaults]synchronize];
-//        KEStartViewController * StartViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"StartViewController"];
-//        
-//        
-//        
-//       
-//        
-//        
-//      //  [self presentViewController:StartViewController animated:NO completion:nil];
-//
-//        
-//        
-//        [self performSelector:@selector(showMainVC:) withObject:StartViewController afterDelay:2];
-//        
-//        
-//    }else
-//    {
+    
+     NSString *lastVersion=[[NSUserDefaults standardUserDefaults]objectForKey:@"lastVersion"];
+    
+    //新用户安装，或者老用户升级
+    if (lastVersion==nil||[lastVersion floatValue]<[VERSION floatValue]) {
+        
+        [[NSUserDefaults standardUserDefaults]setObject:VERSION forKey:@"lastVersion"];
+        
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        KEStartViewController * StartViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"StartViewController"];
+        
+                
+        
+      // [self presentViewController:StartViewController animated:NO completion:nil];
+
+        
+       
+        
+        [self performSelector:@selector(showMainVC:) withObject:StartViewController afterDelay:2];
+        
+        
+    }else
+    {
     
         EZIndexViewController * mainViewController =[self.storyboard instantiateViewControllerWithIdentifier:@"EZIndexViewController"];
         UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:mainViewController];
@@ -61,31 +59,13 @@
        // [self presentViewController:navigation animated:NO completion:nil];
     
          [self performSelector:@selector(showMainVC:) withObject:navigation afterDelay:2];
-  //  }
+    }
     
     
     
     
     
-//    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-//    BOOL opened = [userDefaults boolForKey:@"isNotFisrtOpened"];
-//    if (!opened) {
-//        [userDefaults setBool:YES forKey:@"isNotFisrtOpened"];
-//        [userDefaults synchronize];
-//        KEStartViewController * StartViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"StartViewController"];
-//        [self presentViewController:StartViewController animated:NO completion:nil];
-//    }else{
-//        KEMainViewController * mainViewController =[self.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-//        UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-//        mainViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        [self presentViewController:navigation animated:NO completion:nil];
-//    }
 
-
-//    KEMainViewController * mainViewController =[self.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-//    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-//    mainViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//    [self presentViewController:navigation animated:NO completion:nil];
 
 
 
@@ -101,21 +81,18 @@
     
 
 
-
-
 }
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     if (SCREEN_HEIGHT>500) {
-        self.bgView.image=[UIImage imageNamed:@"kaiji1136"];
+        self.bgView.image=[UIImage imageNamed:@"lunch_4"];
     }else
     {
         
-        self.bgView.image=[UIImage imageNamed:@"kaiji960"];
+        self.bgView.image=[UIImage imageNamed:@"lunch"];
     }
 
 }

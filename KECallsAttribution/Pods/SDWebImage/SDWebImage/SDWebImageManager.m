@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic, readwrite) SDImageCache *imageCache;
 @property (strong, nonatomic, readwrite) SDWebImageDownloader *imageDownloader;
-@property (strong, nonatomic) NSMutableSet *failedURLs;
+@property (strong, nonatomic) NSMutableArray *failedURLs;
 @property (strong, nonatomic) NSMutableArray *runningOperations;
 
 @end
@@ -41,7 +41,7 @@
     if ((self = [super init])) {
         _imageCache = [self createCache];
         _imageDownloader = [SDWebImageDownloader sharedDownloader];
-        _failedURLs = [NSMutableSet new];
+        _failedURLs = [NSMutableArray new];
         _runningOperations = [NSMutableArray new];
     }
     return self;
@@ -112,7 +112,7 @@
                                         progress:(SDWebImageDownloaderProgressBlock)progressBlock
                                        completed:(SDWebImageCompletionWithFinishedBlock)completedBlock {
     // Invoking this method without a completedBlock is pointless
-    NSAssert(completedBlock != nil, @"If you mean to prefetch the image, use -[SDWebImagePrefetcher prefetchURLs] instead");
+    NSParameterAssert(completedBlock);
 
     // Very common mistake is to send the URL using NSString object instead of NSURL. For some strange reason, XCode won't
     // throw any warning for this type mismatch. Here we failsafe this error by allowing URLs to be passed as NSString.
@@ -192,33 +192,26 @@
                         }
                     });
 
-                    BOOL shouldBeFailedURLAlliOSVersion = (error.code != NSURLErrorNotConnectedToInternet && error.code != NSURLErrorCancelled && error.code != NSURLErrorTimedOut);
-                    BOOL shouldBeFailedURLiOS7 = (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1 && error.code != NSURLErrorInternationalRoamingOff && error.code != NSURLErrorCallIsActive && error.code != NSURLErrorDataNotAllowed);
-                    if (shouldBeFailedURLAlliOSVersion || shouldBeFailedURLiOS7) {
+                    if (error.code != NSURLErrorNotConnectedToInternet && error.code != NSURLErrorCancelled && error.code != NSURLErrorTimedOut) {
                         @synchronized (self.failedURLs) {
                             [self.failedURLs addObject:url];
                         }
                     }
                 }
                 else {
-                    if ((options & SDWebImageRetryFailed)) {
-                        @synchronized (self.failedURLs) {
-                            [self.failedURLs removeObject:url];
-                        }
-                    }
-                    
                     BOOL cacheOnDisk = !(options & SDWebImageCacheMemoryOnly);
 
                     if (options & SDWebImageRefreshCached && image && !downloadedImage) {
                         // Image refresh hit the NSURLCache cache, do not call the completion block
                     }
-                    else if (downloadedImage && (!downloadedImage.images || (options & SDWebImageTransformAnimatedImage)) && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)]) {
+                            // NOTE: We don't call transformDownloadedImage delegate method on animated images as most transformation code would mangle it
+                    else if (downloadedImage && !downloadedImage.images && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)]) {
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                             UIImage *transformedImage = [self.delegate imageManager:self transformDownloadedImage:downloadedImage withURL:url];
 
                             if (transformedImage && finished) {
                                 BOOL imageWasTransformed = ![transformedImage isEqual:downloadedImage];
-                                [self.imageCache storeImage:transformedImage recalculateFromImage:imageWasTransformed imageData:(imageWasTransformed ? nil : data) forKey:key toDisk:cacheOnDisk];
+                                [self.imageCache storeImage:transformedImage recalculateFromImage:imageWasTransformed imageData:data forKey:key toDisk:cacheOnDisk];
                             }
 
                             dispatch_main_sync_safe(^{
@@ -290,9 +283,8 @@
 
 - (void)cancelAll {
     @synchronized (self.runningOperations) {
-        NSArray *copiedOperations = [self.runningOperations copy];
-        [copiedOperations makeObjectsPerformSelector:@selector(cancel)];
-        [self.runningOperations removeObjectsInArray:copiedOperations];
+        [self.runningOperations makeObjectsPerformSelector:@selector(cancel)];
+        [self.runningOperations removeAllObjects];
     }
 }
 

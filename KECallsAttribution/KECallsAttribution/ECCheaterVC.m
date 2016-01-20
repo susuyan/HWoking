@@ -16,11 +16,11 @@
 #import "NSString+ContainsMethod.h"
 @interface ECCheaterVC ()<MFMailComposeViewControllerDelegate>
 @property(strong,nonatomic)ECCheaterCell *currentCell;
+@property(nonatomic,strong)ECCheaterCell *tempCell;
 @end
 
 @implementation ECCheaterVC
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
     
@@ -28,8 +28,7 @@
 
 
 }
--(void)viewWillDisappear:(BOOL)animated
-{
+-(void)viewWillDisappear:(BOOL)animated {
 
     [super viewWillDisappear:animated];
     
@@ -41,12 +40,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ECCheaterCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ECCheaterCell" bundle:nil] forCellReuseIdentifier:@"result"];
-    
-    
-    
+
     
     
     _currentCell=[self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    _tempCell = [[ECCheaterCell alloc] init];
     
     [self setRefresh];
     
@@ -77,8 +75,7 @@
 
 
 
--(void)setRefresh
-{
+-(void)setRefresh {
     
     [self.tableView addHeaderWithTarget:self action:@selector(reloadData)];
     
@@ -87,16 +84,12 @@
     
     
 }
--(void)reloadData
-{
+-(void)reloadData {
     
     
     [SVProgressHUD showWithStatus:@"正在加载..."];
     mPage=1;
     [self.view endEditing:YES];
-    
-   
-    
     
     
     AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
@@ -114,22 +107,14 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-         [SVProgressHUD dismiss];
+        [SVProgressHUD dismiss];
         
-         self.tableView.contentOffset=CGPointMake(0, 0);
+        self.tableView.contentOffset=CGPointMake(0, 0);
         [self.tableView headerEndRefreshing];
     }];
     
-    
-    
-   
-    
-   
-    
-    
 }
-- (void)footerRereshing
-{
+- (void)footerRereshing {
     
     [SVProgressHUD showWithStatus:@"正在加载..."];
     
@@ -150,9 +135,6 @@
         [self onItemsReceived:responseObject];
         
         
-        
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         [SVProgressHUD dismiss];
@@ -165,20 +147,16 @@
     
 }
 
--(void)onItemsReceived:(NSDictionary *)item
-{
+-(void)onItemsReceived:(NSDictionary *)item {
     [SVProgressHUD dismiss];
-    
     
     
     if (mPage==1) {
         
-        
         [mItems removeAllObjects];
-         [self.tableView headerEndRefreshing];
+        [self.tableView headerEndRefreshing];
         self.tableView.contentOffset=CGPointMake(0, 0);
-    }else
-    {
+    }else {
         
         [self.tableView footerEndRefreshing];
     }
@@ -191,10 +169,6 @@
         
         [mItems addObjectsFromArray:items];
         
-        
-        
-        
-        
     }
     
     [self.tableView reloadData];
@@ -204,8 +178,7 @@
     
 }
 
--(void)onSearch:(NSDictionary *)item
-{
+-(void)onSearch:(NSDictionary *)item {
     
     
     [resultArray removeAllObjects];
@@ -256,8 +229,7 @@
     
     if (tableView==self.tableView) {
         return mItems.count;
-    }else if (tableView==self.searchDisplayController.searchResultsTableView)
-    {
+    }else if (tableView==self.searchDisplayController.searchResultsTableView) {
     
         return resultArray.count;
     
@@ -266,8 +238,7 @@
     
     return 10;
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
     ECCheaterCell *cell;
@@ -286,23 +257,17 @@
         
         
         
-    }else if (tableView==self.searchDisplayController.searchResultsTableView)
-    {
+    }else if (tableView == self.searchDisplayController.searchResultsTableView) {
     
         cell=[tableView dequeueReusableCellWithIdentifier:@"result"];
         NSDictionary *info=[resultArray objectAtIndex:indexPath.row];
-        
         
         [cell setInfo:info];
 
     
     }
     
-    
-
-    
-    
-    
+        
 //    cell.touchBlock=^(NSString *telNum){
 //    
 //    
@@ -323,6 +288,52 @@
 }
 
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    ECCheaterCell *cell=(ECCheaterCell *)self.currentCell;
+    
+    NSDictionary *info=[mItems objectAtIndex:indexPath.row];
+    
+    int height=[ECCheaterCell getCellHeightWith:[info objectForKey:@"detail"] font:cell.detailLbl.font width:cell.detailLbl.frame.size.width];
+    
+    return height+10;
+    
+}
+
+
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    
+//    if (tableView==self.tableView) {
+//        
+//        _tempCell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+//        NSDictionary *info=[mItems objectAtIndex:indexPath.row];
+//
+//        
+//        [_tempCell setInfo:info];
+//        
+//        
+//        
+//    }else if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        
+//        _tempCell =[tableView dequeueReusableCellWithIdentifier:@"result"];
+//        NSDictionary *info=[resultArray objectAtIndex:indexPath.row];
+//        
+//        
+//        [_tempCell setInfo:info];
+//        
+//        
+//    }
+//    
+//    CGFloat height = [_tempCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//    height += 1;
+//    return height;
+//}
+
+
+//
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //
@@ -442,8 +453,7 @@
     
     
 }
-- (void)showMailPicker:(id)sender
-{
+- (void)showMailPicker:(id)sender {
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     if (mailClass != nil){
         // We must always check whether the current device is configured for sending emails
@@ -461,12 +471,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)launchMailAppOnDevice
-{
+-(void)launchMailAppOnDevice {
     
 }
--(void)displayComposerSheet
-{
+-(void)displayComposerSheet {
     MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
     picker.mailComposeDelegate = self;
     [picker setToRecipients:[NSArray arrayWithObject:@"support@93app.com"]];
@@ -476,8 +484,7 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 
     
     if ([self.searchBar.text containsString:@"-"]) {
@@ -519,8 +526,7 @@
     
     
 }
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
 
 
 
@@ -534,8 +540,7 @@
 
 //判断是不是电话号码
 
-- (BOOL)isMobileNumber:(NSString *)mobileNum
-{
+- (BOOL)isMobileNumber:(NSString *)mobileNum {
     /**
      * 手机号码
      * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
@@ -577,12 +582,10 @@
         || ([regextestcm evaluateWithObject:mobileNum] == YES)
         || ([regextestct evaluateWithObject:mobileNum] == YES)
         || ([regextestcu evaluateWithObject:mobileNum] == YES)
-        || ([regextestphs evaluateWithObject:mobileNum] == YES))
-    {
+        || ([regextestphs evaluateWithObject:mobileNum] == YES)){
         return YES;
     }
-    else
-    {
+    else {
         return NO;
     }
 }

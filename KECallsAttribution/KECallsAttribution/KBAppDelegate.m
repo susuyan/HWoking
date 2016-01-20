@@ -108,6 +108,8 @@
 #import "EZFeedBackViewController.h"
 #import "SVProgressHUD.h"
 #import <AdSupport/AdSupport.h>
+#import "EZAdMannger.h"
+#import "EZNewsViewController.h"
 //#import "EZAddQuickContractVC.h"
 @interface KBAppDelegate()<UIAlertViewDelegate,GADInterstitialDelegate,GDTMobInterstitialDelegate>
 @property (nonatomic, strong)NSDictionary * dictionary;
@@ -129,16 +131,12 @@
 #define IOS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
-    
-    
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+  //  [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
    
     
-    [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
     
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     
@@ -151,9 +149,6 @@
         
     }
     
-    
-    
-    
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     if (DEVICE) {
         UIImage * imageNavigationBar = [UIImage imageNamed:@"daohang_bg"];
@@ -162,38 +157,35 @@
         UIImage * imageNavigationBar = [UIImage imageNamed:@"daohang_bg_ios7"];
         [[UINavigationBar appearance] setBackgroundImage:imageNavigationBar forBarMetrics:UIBarMetricsDefault];
     }
+    
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor blackColor];
+    shadow.shadowOffset = CGSizeMake(0, 0);
     NSDictionary * titelDictionary = @{NSForegroundColorAttributeName:[UIColor whiteColor],
                                        NSFontAttributeName:[UIFont boldSystemFontOfSize:22]};
     [[UINavigationBar appearance] setTitleTextAttributes:titelDictionary];
     
     
-    [MobClick startWithAppkey:UMENG_APP_ID reportPolicy:BATCH channelId:@"App Store"];
-    //[MobClick startWithAppkey:UMENG_APP_ID reportPolicy:BATCH channelId:@"91 Platform"];
+   // [MobClick startWithAppkey:UMENG_APP_ID reportPolicy:BATCH channelId:@"91 Platform"];
+    [MobClick startWithAppkey:UMENG_APP_ID reportPolicy:BATCH channelId:@"AppStore"];
+    
     [MobClick setVersion:[VERSION integerValue]];
     
-    [self testUM];
+    //[self testUM];
+    
+
     
     [self umSocial];
     
     
-    
-    
-    
    // [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isPassed"];
-    
-    
     
     NSString *idfa=[[[ASIdentifierManager sharedManager] advertisingIdentifier]UUIDString];
     [[NSUserDefaults standardUserDefaults]setValue:idfa forKey:@"uid"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     
-    
-    
-    
     if ([[NSUserDefaults standardUserDefaults]objectForKey:@"adtype"]==nil) {
-        
-        
         
          [[NSUserDefaults standardUserDefaults]setObject:@"admob" forKey:@"adtype"];
         
@@ -205,7 +197,22 @@
     
     
     
+    [self initJPush:launchOptions];
+
     
+    [[HTTPServer sharedHTTPServer] start];
+
+    
+    
+    [UMOpus setAudioEnable:YES];
+    [UMFeedback setAppkey:UMENG_APP_ID];
+    [UMFeedback setLogEnabled:YES];
+    [[UMFeedback sharedInstance] setFeedbackViewController:[UMFeedback feedbackViewController] shouldPush:NO];
+   
+    
+    return YES;
+}
+-(void)initJPush:(NSDictionary *)launchOptions {
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
     
@@ -218,8 +225,7 @@
                                                        UIUserNotificationTypeAlert) categories:nil];
         [[UIApplication sharedApplication]registerForRemoteNotifications];
         
-    }else
-    {
+    }else {
         
         [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                        UIRemoteNotificationTypeSound |
@@ -227,9 +233,6 @@
                                            categories:nil];
         
     }
-    
-    
-    
     
     
 #else
@@ -241,159 +244,9 @@
     
 #endif
     
-    
-    
     [APService setupWithOption:launchOptions];
     
-    //内购，清除钥匙串
-    // [SFHFKeychainUtils deleteItemForUsername:BUNDLEID andServiceName:kProductIdInAppPurchase error:nil];
-    
-    
-    [[HTTPServer sharedHTTPServer] start];
-    
-    
-    
-//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
-//    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    
-    
-    
-    
-    
-//    NSString *lastVersion=[[NSUserDefaults standardUserDefaults]objectForKey:@"lastVersion"];
-//    
-//    
-//    if (lastVersion==nil) {
-//        
-//        
-//        
-//        [self postUserIdfa:idfa isAd:NO];
-//        
-//        
-//        
-//    }
-    
-
-    
-    
-    
-    
-    [UMOpus setAudioEnable:YES];
-    [UMFeedback setAppkey:UMENG_APP_ID];
-    [UMFeedback setLogEnabled:YES];
-    [[UMFeedback sharedInstance] setFeedbackViewController:[UMFeedback feedbackViewController] shouldPush:NO];
-   
-
-    
-    checkTime= [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(testBattery) userInfo:nil repeats:YES];
-    
-   
-    
-    
-    return YES;
 }
--(void)testBattery
-{
-    
-    
-    
-    
-    UIDevice *device = [UIDevice currentDevice];
-    device.batteryMonitoringEnabled = YES;
-    
-    
-    
-    
-    // [formatter dateFromString:@"00:00"];device.batteryState ==UIDeviceBatteryStateFull  [self  batteryLevel]<80
-    if (![[NSUserDefaults standardUserDefaults]boolForKey:@"Battery"] && device.batteryState ==UIDeviceBatteryStateFull ) {
-        
-        [checkTime invalidate];
-        
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        if (notification) {
-            
-            notification.fireDate = [NSDate date ];
-            notification.repeatInterval=0;
-            notification.timeZone=[NSTimeZone defaultTimeZone];
-            notification.alertBody =[NSString stringWithFormat:@"当电池满电时，请拔掉充电线，过度充电会损坏电池寿命!"];
-            // notification.alertAction = @"textContent";
-        }
-        
-        notification.soundName = UILocalNotificationDefaultSoundName;
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    }
-    
-    
-    
-    
-    
-}
-//设备的当前电量
--(double)batteryLevel
-{
-    float battery = [self mainbatteryLevel];
-    
-    return battery;
-}
--(float)mainbatteryLevel {
-    // Find the battery level
-    @try {
-        // Get the device
-        UIDevice *Device = [UIDevice currentDevice];
-        // Set battery monitoring on
-        Device.batteryMonitoringEnabled = YES;
-        
-        // Set up the battery level float
-        float BatteryLevel = 0.0;
-        // Get the battery level
-        float BatteryCharge = [Device batteryLevel];
-        
-        // Check to make sure the battery level is more than zero
-        if (BatteryCharge > 0.0f) {
-            // Make the battery level float equal to the charge * 100
-            BatteryLevel = BatteryCharge * 100;
-        } else {
-            // Unable to find the battery level
-            return -1;
-        }
-        
-        // Output the battery level
-        return BatteryLevel;
-    }
-    @catch (NSException *exception) {
-        // Error out
-        return -1;
-    }
-}
--(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
-    
-    
-    [checkTime invalidate];
-    
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate) ;
-    
-    
-    NSString *path =@"/System/Library/Audio/UISounds/sms-received1.caf";
-    //[[NSBundle bundleWithIdentifier:@"com.apple.UIKit" ]pathForResource:soundName ofType:soundType];//得到苹果框架资源UIKit.framework ，从中取出所要播放的系统声音的路径
-    //[[NSBundle mainBundle] URLForResource: @"tap" withExtension: @"aif"];  获取自定义的声音
-    
-    SystemSoundID sound;
-    
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path],&sound);
-    
-    
-    AudioServicesPlaySystemSound(sound);
-    
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提醒" message:@"当电池满电时，请拔掉充电线，过度充电会损坏电池寿命!" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-    
-    
-    [alert show];
-    
-    
-}
-
-
 
 - (void)receiveNotification:(id)receiveNotification {
     //    NSLog(@"receiveNotification = %@", receiveNotification);
@@ -404,15 +257,10 @@
 }
 
 
--(void)postUserIdfa:(NSString *)uid isAd:(BOOL)isAd
-{
-
-
+-(void)postUserIdfa:(NSString *)uid isAd:(BOOL)isAd {
     
     int time=[[NSDate date]timeIntervalSince1970];
     
-    
-
 
     AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
     
@@ -425,12 +273,10 @@
     
     if (isAd) {
         
-        
          url=[NSString stringWithFormat:@"http://93app.com/laidianguishu/record_clikc_ad_user.php?version=%@&bundleid=%@&idfa=%@&time=%d",VERSION,BUNDLEID,uid,time];
         
         
-    }else
-    {
+    }else {
     
         url=[NSString stringWithFormat:@"http://93app.com/laidianguishu/record_all_user.php?version=%@&bundleid=%@&idfa=%@&time=%d",VERSION,BUNDLEID,uid,time];
     
@@ -439,14 +285,8 @@
     
     
     
-    
-    
-    
-    
-    
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-      
         
         NSLog(@"idfa:%@",responseObject);
         
@@ -456,9 +296,6 @@
             NSURL *url = [NSURL URLWithString:self.urlScheme];
             [[UIApplication sharedApplication]openURL:url];
         }
-        
-        
-        
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -495,23 +332,6 @@
     
 }
 
--(void)testUM
-{
-
-
-
-    
-    Class cls = NSClassFromString(@"UMANUtil");
-    SEL deviceIDSelector = @selector(openUDIDString);
-    NSString *deviceID = @"974993118602";
-    if(cls && [cls respondsToSelector:deviceIDSelector]      ){
-        deviceID = [cls performSelector:deviceIDSelector];
-    }
-    NSLog(@"{\"oid\": \"%@\"}", deviceID);
-    
-
-
-}
 - (void)requests{
     if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
         return;
@@ -536,15 +356,6 @@
                 [[NSUserDefaults standardUserDefaults]setObject:self.dictionary[@"ad_banner"] forKey:@"adtype"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
                 
-//                if (![self.dictionary[@"update_url"] isEqualToString:@""]) {
-//                    //版本更新
-//                    self.updateAlertView=[[UIAlertView alloc]initWithTitle:@"更新"
-//                                                                   message:@"有可更新的版本，需要更新吗?"
-//                                                                  delegate:self
-//                                                         cancelButtonTitle:@"取消"
-//                                                         otherButtonTitles:@"下载", nil];
-//                    [self.updateAlertView show];
-//                }
                 if ([self.dictionary[@"big_ad_interval"] integerValue] > 1) {
                     
                     
@@ -564,7 +375,7 @@
         
         NSArray * array = self.dictionary[@"neitui_list"];
         
-        
+        NSLog(@"%@",array);
         
         
         NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
@@ -593,10 +404,8 @@
             for (int i=0; i<array.count; i++) {
                 
                 
-                
                 self.urlScheme = array[i][@"url"];
                 
-                                
                 //已安装跳出当前循环
                 if ([self APCheckIfAppInstalled2:[array objectAtIndex:i][@"url_scheme"]]) {
                     
@@ -611,13 +420,26 @@
                     [userDefaults synchronize];
                     
                     
+                    NSDictionary *ad=[array objectAtIndex:i];
                     
-                    self.neituiAlertView = [[UIAlertView alloc] initWithTitle:[array objectAtIndex:i][@"headline"]
-                                                                      message:[array objectAtIndex:i][@"description"]
-                                                                     delegate:self
-                                                            cancelButtonTitle:@"取消"
-                                                            otherButtonTitles:@"下载", nil];
-                    [self.neituiAlertView show];
+                    
+                    
+                    if ([ad objectForKey:@"img_url"]&&![[ad objectForKey:@"img_url"]isEqualToString:@""]) {
+                         [self presentAdViewWith:ad];
+                    }else
+                    {
+                    
+                        self.neituiAlertView = [[UIAlertView alloc] initWithTitle:[array objectAtIndex:i][@"headline"]
+                                                                          message:[array objectAtIndex:i][@"description"]
+                                                                         delegate:self
+                                                                cancelButtonTitle:@"取消"
+                                                                otherButtonTitles:@"下载", nil];
+                        [self.neituiAlertView show];
+
+                    
+                    }
+                    
+                    
                     
                     
                     
@@ -633,6 +455,26 @@
         
     }
 }
+//自定义弹窗广告
+-(void)presentAdViewWith:(NSDictionary *)item {
+    
+    EZAdManager *adManager=[EZAdManager shareAdManager];
+    
+    [adManager setAdInfo:item withImageCompletion:^(UIImage *image) {
+        
+        
+        if (image) {
+            
+            
+            [[EZAdManager shareAdManager]showInView:[self getLast].view];
+            
+        }
+        
+        
+    }];
+    
+}
+
 - (void)giveAmark{
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
     NSInteger nextAlertCount = [userDefaults integerForKey:@"nextAlertCount"];
@@ -673,14 +515,8 @@
         }
     }else if (alertView == self.giveAmarkAlertView){
         if (buttonIndex == 0) {
-//            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-//            
-//            NSInteger nextAlertCount = [userDefaults integerForKey:@"nextAlertCount"];
-//            nextAlertCount += 5;
-//            [userDefaults setInteger:nextAlertCount forKey:@"nextAlertCount"];
-//            [userDefaults synchronize];
-        }else if (buttonIndex==1)
-        {
+
+        }else if (buttonIndex==1) {
         
             NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
             
@@ -724,8 +560,7 @@
         }
     }
 }
--(void)loadFullScreenAd
-{
+-(void)loadFullScreenAd {
     
     NSString *type=[[NSUserDefaults standardUserDefaults]objectForKey:@"adtype"];
     
@@ -745,39 +580,28 @@
         
         
         
-    }else
-    {
+    }else {
     
     
-        self.interstitial = [[GADInterstitial alloc]init];
+        self.interstitial = [[GADInterstitial alloc]initWithAdUnitID:ADMOB_SCREEN_APP_ID];
         self.interstitial.delegate=self;
-        self.interstitial.adUnitID =ADMOB_SCREEN_APP_ID;
         [self.interstitial loadRequest:[GADRequest request]];
     
     }
     
-    
-    
-    
-   
 }
 //admob
-- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
-{
+- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial {
     if (self.window.rootViewController.presentedViewController.presentedViewController==nil) {
          [self.interstitial presentFromRootViewController:self.window.rootViewController.presentedViewController];
-    }else
-    {
+    }else {
      [self.interstitial presentFromRootViewController:self.window.rootViewController.presentedViewController.presentedViewController];
     
     }
     
-   
     
-   
 }
-- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error
-{
+- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
 
 
     NSLog(@"%@",error);
@@ -1105,11 +929,10 @@
 
         
     }
+    mPushInfo=userInfo;
     
-    
-    
-    
-    
+   [self performSelector:@selector(schedulSkipToNews) withObject:nil afterDelay:3];
+//     [self dealWithPushInfo:userInfo application:application];
     
 
     completionHandler(UIBackgroundFetchResultNoData);
@@ -1118,15 +941,6 @@
     
     // Required
     [APService handleRemoteNotification:userInfo];
-    
-    
-//    [UMFeedback showFeedback:[UMFeedback feedbackViewController] withAppkey:UMENG_APP_ID];
-    
-    
-   
-    
-    
-    //    [UMessage didReceiveRemoteNotification:userInfo];
     [UMFeedback didReceiveRemoteNotification:userInfo];
     
     
@@ -1147,18 +961,62 @@
         
     }
 
+    mPushInfo=userInfo;
     
-    
-    
+    [self performSelector:@selector(schedulSkipToNews) withObject:nil afterDelay:3];
+
 
 
 }
 
 
+-(void)dealWithPushInfo:(NSDictionary *)userInfo application:(UIApplication *)application {
+    
+    if ([userInfo objectForKey:@"news"]) {
+        
+        NSString *jsonStr=[userInfo objectForKey:@"news"];
+        NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+        if (dic==nil) {
+            return;
+        }
+        
+        NSLog(@"%@:%@",NSStringFromSelector(_cmd),dic);
+        
+        
+        
+        NSString *cat=[dic objectForKey:@"cat"];
+        
+        
+        NSString *url=[dic objectForKey:@"url"];
+        
+        
+        NSString *title=[dic objectForKey:@"title"];
+        
+        
+        
+        UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        EZNewsViewController *news=[storyboard instantiateViewControllerWithIdentifier:@"EZNewsViewController"];
+        news.currentType=EZNewsVCTypeFromPush;
+        news.currentUrl=url;
+        news.pageCat=cat;
+        news.navigationItem.title=title;
+        
+        UIViewController *vc= [self getLast];
+        
+        UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:news];
+    
+            [vc presentViewController:nav animated:YES completion:nil];
+       // [vc pushViewController:news animated:YES];
+        
+        
+    }
+    
+}
 
--(UIViewController *)getLast
-{
 
+
+-(UIViewController *)getLast {
 
     for (UIViewController* next = self.window.rootViewController; next; next =
          next.presentedViewController) {
@@ -1167,13 +1025,16 @@
             return next;
         }
     
-    
     }
 
     return nil;
 
 }
 
+-(void)schedulSkipToNews{
+    
+    [self dealWithPushInfo:mPushInfo application:[UIApplication sharedApplication]];
 
+}
 
 @end

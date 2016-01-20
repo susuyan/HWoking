@@ -19,7 +19,13 @@ typedef void(^completionBlockWithFailure)(NSError *error);
          completionBlockWithSuccess:(completionBlockWithSuccess)successBlock
          completionBlockWithFailure:(completionBlockWithFailure)failureBlock;
 
-//在线查询归属地信息
+/**
+ *  在线查询归属地信息
+ *
+ *  @param urlString    api 接口
+ *  @param successBlock 查询到结果的回调
+ *  @param failureBlock 查询失败的回调
+ */
 - (void)queryPhoneNumberLocaleInfoForURL:(NSString *)urlString
               completionBlockWithSuccess:(completionBlockWithSuccess)successBlock
               completionBlockWithFailure:(completionBlockWithFailure)failureBlock;

@@ -114,7 +114,7 @@
 - (IBAction)touchMenu:(UIButton *)sender {
     
     
-    _touchMenuBlock(sender.tag);
+    _touchMenuBlock((NSInteger)sender.tag);
     
     [self dismiss];
 }

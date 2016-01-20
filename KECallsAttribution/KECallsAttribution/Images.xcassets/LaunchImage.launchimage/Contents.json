@@ -3,7 +3,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "960kaiji.png",
+      "filename" : "default@2x-1.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
@@ -12,7 +12,7 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "retina4",
-      "filename" : "1136kaiji.png",
+      "filename" : "1136@2x-1.png",
       "minimum-system-version" : "7.0",
       "orientation" : "portrait",
       "scale" : "2x"
@@ -20,21 +20,21 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "960kaiji 2.png",
+      "filename" : "default.png",
       "extent" : "full-screen",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "960kaiji-1.png",
+      "filename" : "default@2x.png",
       "extent" : "full-screen",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "1136kaiji-1.png",
+      "filename" : "1136@2x.png",
       "extent" : "full-screen",
       "subtype" : "retina4",
       "scale" : "2x"

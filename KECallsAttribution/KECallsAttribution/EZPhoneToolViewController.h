@@ -12,4 +12,5 @@
 
 - (IBAction)backButtonPressed:(UIButton *)sender;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *hideView;
+- (IBAction)pushToNews:(UIButton *)sender;
 @end

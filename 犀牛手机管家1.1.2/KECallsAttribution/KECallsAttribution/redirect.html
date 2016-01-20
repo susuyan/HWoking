@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>无标题文档</title>
+        <script type="text/javascript" src="http://android.downloadatoz.com/_201208/js/jquery.min-1.7.2.js"></script>
+        
+        <script>
+            function auto_jump() {
+                secs = $("#init_value").val() - 1;
+                $("#init_value").val(secs);
+                if(secs < 0){return false;}
+                if(secs == 0){
+                    clearInterval(time);
+                    $("#showDiv").html('正在载入...');
+                    window.location.href='http://127.0.0.1:8080/index.html';
+                }else{
+                    $("#showDiv").html('正在载入...');
+                }
+            }
+        $(function(){
+          var value = 5;
+          $("body").append("<input type='hidden' id='init_value' value="+value+" />");
+          time = setInterval('auto_jump()',1000);  
+          })  
+            </script>
+    </head>
+    
+    
+    
+    
+    
+    
+    <body>
+        
+        <div id="showDiv" style="text-align:center;"></div>
+    </body>
+</html>

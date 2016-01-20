@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
-	<string>犀牛手机管家</string>
+	<string>手机归属地</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -13,11 +13,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>犀牛手机管家-专业防骚扰苹果手机助手,来电骚扰电话拦截,手机照片清理优化大师</string>
+	<string>手机归属地-来电归属地显示,防骚扰苹果手机助手</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>2.9.5</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -28,10 +28,10 @@
 			<key>CFBundleURLIconFile</key>
 			<string>icon120</string>
 			<key>CFBundleURLName</key>
-			<string>com.93app.erweimashengcheng</string>
+			<string>com.93app.shoujiguishudi</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.93app.erweimashengcheng</string>
+				<string>com.93app.shoujiguishudi</string>
 			</array>
 		</dict>
 		<dict>
@@ -64,20 +64,21 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.1.2</string>
+	<string>2.9.5</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>wechat</string>
 		<string>weixin</string>
+		<string>mqqapi</string>
+		<string>mqq</string>
+		<string>mqqconnect</string>
 		<string>sinaweibohd</string>
 		<string>sinaweibo</string>
 		<string>sinaweibosso</string>
 		<string>weibosdk</string>
 		<string>weibosdk2.5</string>
-		<string>mqqapi</string>
-		<string>mqq</string>
-		<string>mqqOpensdkSSoLogin</string>
-		<string>mqqconnect</string>
 		<string>mqqopensdkdataline</string>
 		<string>mqqopensdkgrouptribeshare</string>
 		<string>mqqopensdkfriend</string>
@@ -96,22 +97,7 @@
 		<string>mqzoneopensdkapiV2</string>
 		<string>mqzoneopensdkapi19</string>
 		<string>mqzoneopensdkapi</string>
-		<string>mqqbrowser</string>
-		<string>mttbrowser</string>
-		<string>renrenios</string>
-		<string>renrenapi</string>
-		<string>renren</string>
-		<string>renreniphone</string>
-		<string>laiwangsso</string>
-		<string>yixin</string>
-		<string>yixinopenapi</string>
-		<string>instagram</string>
-		<string>whatsapp</string>
-		<string>line</string>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
+		<string>mqzoneopensdk</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

@@ -62,8 +62,7 @@
     
     self.avatarView.touchBlock=^{
         
-     
-        
+    
         
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"选择联系人头像"
@@ -106,12 +105,6 @@
     image.allowsEditing=YES;
     
     
-    
-
-    
-    
-   
-    
     switch (buttonIndex) {
         case 0:
             image.sourceType=UIImagePickerControllerSourceTypeCamera;
@@ -134,11 +127,6 @@
             break;
     }
     
-    
-   
-
-    
-
 }
 //- (void)actionSheetCancel:(UIActionSheet *)actionSheet
 //{
@@ -150,16 +138,14 @@
 //}
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     // Return the number of sections.
     return 1;
@@ -171,8 +157,7 @@
     // Return the number of rows in the section.
     return 3;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
@@ -325,11 +310,6 @@
 }
 
 
-
-
-
-
-
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
     
     
@@ -342,8 +322,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)getContact:(UIButton *)sender {
-    
-    
     
     ABPeoplePickerNavigationController *people=[[ABPeoplePickerNavigationController alloc]init];
     
@@ -481,11 +459,6 @@
         [SVProgressHUD showErrorWithStatus:@"号码不能为空！"];
         return;
     }
-    
-    
-    
-    
-    
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://127.0.0.1:8080/index.html"]];
     

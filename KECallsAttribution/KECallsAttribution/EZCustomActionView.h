@@ -13,11 +13,9 @@ typedef void(^TouchMenu)(int);
 @interface EZCustomActionView : UIView
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
-
 @property (strong, nonatomic)TouchMenu touchMenuBlock;
 
 -(void)showInView:(UIView *)view;
-
 
 -(void)dismiss;
 

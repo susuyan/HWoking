@@ -25,9 +25,6 @@
     
     
     
-    
-    
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -104,11 +101,10 @@
         NSString *code=[[smsItems objectAtIndex:indexPath.row]objectForKey:@"code"];
         [self sendSmsWithCode:code];
         
-    }else
-    {
+    }else {
     
-     NSString *code=[[phoneItems objectAtIndex:indexPath.row]objectForKey:@"code"];
-    
+        NSString *code=[[phoneItems objectAtIndex:indexPath.row]objectForKey:@"code"];
+        
         [self callWithCode:code];
     
     }
@@ -116,12 +112,10 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
--(void)sendSmsWithCode:(NSString *)code
-{
+-(void)sendSmsWithCode:(NSString *)code {
 
 //发短信
-    
-    
+    [[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     
     Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
     
@@ -137,9 +131,12 @@
             
             picker.body=code;
             
-            
+           
+                
             
             [self presentViewController:picker animated:YES completion:nil];
+
+            
 
             
         }
@@ -153,27 +150,15 @@
             
         }
         
-    }
-    
-    else {
+    } else {
         
         // iOS版本过低,iOS4.0以上才支持程序内发送短信
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    
     
     
     //Notifies users about errors associated with the interface
@@ -181,7 +166,6 @@
     switch (result) {
             
         case MessageComposeResultCancelled:
-            
             
             
             [SVProgressHUD showErrorWithStatus:@"取消"];
@@ -209,63 +193,24 @@
             
     }
     
+    UIImage *backgroundImage = [UIImage imageNamed:@"daohang_bg_ios7"];
+    
+    [[UINavigationBar appearance] setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
--(void)callWithCode:(NSString *)code
-{
+-(void)callWithCode:(NSString *)code {
 
-
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",code]]];
-
+   // [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",code]]];
+    UIWebView *callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",code]]]];
+    [self.view addSubview:callWebview];
 }
 
 
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
     

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Lunbo.h"
+
 @interface EZProtectVC : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *numberText;
 @property(strong,nonatomic)NSString *inquiryPhoneNumber;
@@ -18,16 +18,9 @@
 @property(copy,nonatomic)NSString *query;
 @property (weak, nonatomic) IBOutlet UILabel *provinceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *carrierLbl;
-
-@property (nonatomic,strong )UIButton *disBtn;
-@property (nonatomic,strong)    Lunbo *lunbo;
-
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender;
 
 - (IBAction)checkNumber:(UIButton *)sender;
 - (IBAction)backButtonPressed:(UIButton *)sender;
-#pragma mark - 
-
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end

@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "check_button.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "check_button@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "check_button@2x.png"
     },
     {
       "idiom" : "universal",

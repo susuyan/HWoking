@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "haoma_high.png"
+      "filename" : "haoma_high.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "haoma_high@2x.png"
+      "filename" : "haoma_high@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "haoma_high@3x.png",
       "scale" : "3x"
     }
   ],

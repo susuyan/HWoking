@@ -7,30 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VWWWaterView.h"
+
 @interface EZIndexViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIView *upView;
-@property (weak, nonatomic) IBOutlet UIView *moreView;
-@property (weak, nonatomic) IBOutlet UIButton *cleanButton;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *upViewHeightConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *circleTopContraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *circleLeftContraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logobgTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logobgLeftConstraint;
-
-@property (weak, nonatomic) IBOutlet UIImageView *circleImageView;
-
-@property (weak, nonatomic) IBOutlet UILabel *deviceNameLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *deviceFreeSpaceLabel;
-@property (weak, nonatomic) IBOutlet UIButton *optimizeButton;
-
-@property (weak, nonatomic) IBOutlet UILabel *detectionLabel;
 
 
-- (IBAction)wallpaperPage:(UIButton *)sender;
+@property(copy,nonatomic)NSString *inquiryPhoneNumber;
+@property (weak, nonatomic) IBOutlet UILabel *index_top_tips;
 
+
+
+@property (weak, nonatomic) IBOutlet UITextField *phoneTxt;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *top_icon_width;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *top_icon_top;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *indexMarginTopConstraint;
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *index_top_icon;
+@property (weak, nonatomic) IBOutlet UILabel *provinceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *carrierLabel;
+
+- (IBAction)queryNumber:(UIButton *)sender;
+- (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender;
 @end

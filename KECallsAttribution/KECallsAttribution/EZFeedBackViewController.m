@@ -35,10 +35,7 @@
     [self.feedback get];
     // Do any additional setup after loading the view.
 }
--(void)initNav
-{
-
-
+-(void)initNav {
 
     UIButton *back =[UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -54,16 +51,10 @@
     self.navigationItem.leftBarButtonItem=backItem;
 
 
-
-
-
 }
--(void)dismisView
-{
-
+-(void)dismisView {
 
     [self dismissViewControllerAnimated:YES completion:nil];
-
 
 }
 - (void)didReceiveMemoryWarning {

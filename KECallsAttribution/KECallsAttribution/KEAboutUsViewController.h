@@ -13,7 +13,6 @@
 
     UISwitch *pushSwitch;
     
-    UISwitch *NotificationSet;
     
     NSArray *urlArray;
 
@@ -21,6 +20,5 @@
 - (IBAction)back:(UIButton *)sender;
 //@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet UITableViewCell *pushCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *NotificationCell;
 
 @end

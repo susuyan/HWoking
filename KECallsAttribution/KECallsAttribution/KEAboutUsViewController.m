@@ -12,7 +12,7 @@
 #import "KEProgressHUD.h"
 #import "PXAlertView.h"
 #import "APService.h"
-
+#import "ECBrandViewController.h"
 #import "UMFeedback.h"
 #import <sqlite3.h>
 #import "EZFeedBackViewController.h"
@@ -22,7 +22,8 @@
 #import "ChineseToPinyin.h"
 #import "HVcardImporter.h"
 #import "HDefaults.h"
-#import "HAdvertisementManager.h"
+#import "HMarkHistoryController.h"
+
 @interface KEAboutUsViewController ()<MFMailComposeViewControllerDelegate>
 @property(strong,nonatomic)MBProgressHUD *progressHUD;
 @property(copy,nonatomic)NSString *databaseFilePath;
@@ -31,7 +32,6 @@
 
 
 
-@property (nonatomic, strong) UIView *bannerView;
 @end
 
 @implementation KEAboutUsViewController
@@ -76,17 +76,10 @@
     _pushCell.accessoryView=pushSwitch;
     
     
-    NotificationSet = [[UISwitch alloc]init];
-    NotificationSet.on = ![[NSUserDefaults standardUserDefaults]boolForKey:@"Battery"];
-    [NotificationSet addTarget:self action:@selector(openPushSwitchNotif:) forControlEvents:UIControlEventValueChanged];
-    self.NotificationCell.accessoryView = NotificationSet;
-
-    
-    
     urlArray=@[@"https://itunes.apple.com/cn/app/id858988471",@"https://itunes.apple.com/cn/app/id891567883",@"https://itunes.apple.com/cn/app/id889054201",@"https://itunes.apple.com/cn/app/id804456296",@"https://itunes.apple.com/cn/app/id879958475",@"https://itunes.apple.com/cn/app/id891180383"];
     
     
-    [self setupADBannerView];
+
 }
 
 
@@ -105,73 +98,97 @@
 //    }
     
 
-    return 3;
+    return 5;
 
 }
-- (void)setupADBannerView {
-    _bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-50-64, SCREEN_WIDTH, 50)];
-    [self.view addSubview:_bannerView];
-    HAdvertisementManager *manager = [HAdvertisementManager shareManager];
-    [manager showBannerToParentView:_bannerView rootViewController:self bannerAdUnitID:ADMOB_APP_ID appKey:nil placementID:nil];
-}
-#pragma mark - IBAction
 - (IBAction)back:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    switch (indexPath.section) {
-            
-       
-        case 0:
-        {
-            
-        }
-            
-            break;
-        case 1:
-        {
-            if (indexPath.row == 0) {
-                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@?mt=8",APPLE_ID]]];
-            }else if (indexPath.row == 1){
-                [self share];
-            }
-        }
-            
-            break;
-        case 2:
-        {
-            
-            if (indexPath.row == 0) {
-                
-                EZFeedBackViewController *feedback=[[EZFeedBackViewController alloc]init];
-                
-                UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:feedback];
-                
-                
-                [self presentViewController:nav animated:YES completion:nil];
-                
-                
-            }
 
-        }
+#pragma mark - UITableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
             
-            break;
+            HMarkHistoryController *markHistoryController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HMarkHistoryController"];
+            [self.navigationController pushViewController:markHistoryController animated:YES];
+        }
         
     }
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            //[self showLargeAlertView];
+        }else if (indexPath.row==2) {
+        
+            [self recoveryAddressBook];
+            
+        }
+    }else if (indexPath.section == 2){
+        if (indexPath.row == 0) {
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@?mt=8",APPLE_ID]]];
+        }else if (indexPath.row == 1){
+            [self share];
+        }
+    }else if (indexPath.section == 3){
+        if (indexPath.row == 0) {
+            //[self showMailPicker:nil];
+            
+            
+//            [self presentModalViewController:[UMFeedback feedbackModalViewController]
+//                                    animated:YES];
+            EZFeedBackViewController *feedback=[[EZFeedBackViewController alloc]init];
+            UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:feedback];
+            [self presentViewController:nav animated:YES completion:nil];
+            
+            
+        }
+    }else if (indexPath.section == 4) {
+    
+        if (indexPath.row==0) {
+            
+            [self goToBrandNumberInfo];
+
+            
+        }
+        
+        
+        else if (indexPath.row==1) {
+        
+            NSString *url=@"https://itunes.apple.com/cn/app/id999256279?mt=8";
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:url]];
+
+        
+        
+        }
+        
+        
+        
+        
+    }
+    
+    //    else if (indexPath.section==4)
+//    {
+//    
+//        NSString *url=[urlArray objectAtIndex:indexPath.row];
+//        
+//        
+//        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:url]];
+//    
+//    
+//    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (void)share{
-    NSString * content = [NSString stringWithFormat:@"%@。\r\n%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"],[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@?mt=8",APPLE_ID]];
+    NSString * content = [NSString stringWithFormat:@"%@。\r\n%@",@"你的iphone也能防骚扰啦！陌生来电识别、防骚扰防诈骗，不信你也试试",[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@?mt=8",APPLE_ID]];
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UMENG_APP_SHARE_ID
                                       shareText:content
                                      shareImage:[UIImage imageNamed:@"icon120"]
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,nil]
                                        delegate:nil];
-     [UMSocialData defaultData].extConfig.title = @"犀牛手机管家";
+     [UMSocialData defaultData].extConfig.title = @"手机归属地";
     
 }
 
@@ -203,59 +220,47 @@
 {
 	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
 	picker.mailComposeDelegate = self;
-    [picker setToRecipients:[NSArray arrayWithObject:@"tpappsupport@163.com"]];
-    [picker setSubject:@"意见反馈-犀牛手机管家"];
+    [picker setToRecipients:[NSArray arrayWithObject:@"support@93app.com"]];
+    [picker setSubject:@"意见反馈-手机归属地"];
     picker.title = @"意见反馈";
 	//[picker setMessageBody:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"] isHTML:NO];
     [self presentViewController:picker animated:YES completion:nil];
 }
--(void)openPushSwitchNotif:(UISwitch *)sender{
-    //设备充电消息推送
-    if (sender.on) {
-        //
-        //        UIRemoteNotificationType type=[[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-        //
-        //        if (type==UIRemoteNotificationTypeNone) {
-        //
-        //            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"开启推送功能" message:@"请前往“设置->通知中心->电池医生”页面开启推送功能" delegate:self cancelButtonTitle:@"知道了 " otherButtonTitles:nil, nil];
-        //            [alert show];
-        //            sender.on=NO;
-        //
-        //        }else{
-        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"Battery"];
-        
-        //      }
-        
-        //        [[UIApplication sharedApplication]registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge |
-        //         UIRemoteNotificationTypeSound |
-        //         UIRemoteNotificationTypeAlert];
-    }else{
-        
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"Battery"];
-        
-        // [[UIApplication sharedApplication]unregisterForRemoteNotifications];
-    }
-    
-    [[NSUserDefaults standardUserDefaults]synchronize];
 
-}
 
--(void)openPushSwitch:(UISwitch *)sender {
+-(void)openPushSwitch:(UISwitch *)sender
+{
+
+
     if (sender.on) {
+        
+        
+        
         if (IS_IOS8) {
+            
+            
          BOOL isRegister=   [[UIApplication sharedApplication]isRegisteredForRemoteNotifications];
+            
+            
             if (!isRegister) {
+                
+                
+                
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"开启推送功能" message:@"请前往“设置->通知中心->归属地助手”页面开启推送功能" delegate:self cancelButtonTitle:@"知道了 " otherButtonTitles:nil, nil];
                 [alert show];
                 sender.on=NO;
                 
-            }else {
+            }else
+            {
                 [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"limitpush"];
                 
             }
-  
+
             
-        }else {
+            
+            
+        }else
+        {
         
             UIRemoteNotificationType type=[[UIApplication sharedApplication] enabledRemoteNotificationTypes];
             
@@ -269,25 +274,40 @@
                 [alert show];
                 sender.on=NO;
                 
-            }else {
+            }else
+            {
                 [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"limitpush"];
                 
             }
+
         
         
         }
-    
+        
+        
+        
+
+        
         
         if (IS_IOS8) {
+            
+            
+            
+            
             
             [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
                                                                                  settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
                                                                                  categories:nil]];
             
+            
             [[UIApplication sharedApplication] registerForRemoteNotifications];
     
-    
-        }else {
+            
+            
+            
+            
+        }else
+        {
         
             
             [[UIApplication sharedApplication]registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge |
@@ -297,7 +317,9 @@
         
         }
         
-  
+        
+        
+        
     }else
     {
     
@@ -309,6 +331,18 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
 
 }
+-(void)goToBrandNumberInfo
+{
+
+
+    ECBrandViewController *brand=[self.storyboard instantiateViewControllerWithIdentifier:@"ECBrandViewController"];
+    
+    [self.navigationController pushViewController:brand animated:YES];
+
+
+
+}
+
 
 
 
@@ -341,7 +375,12 @@
     });
     
     
-        
+    
+    
+    
+    
+    
+    
     
     
 }

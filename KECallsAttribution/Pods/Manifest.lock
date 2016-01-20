@@ -7,42 +7,36 @@ PODS:
   - AFNetworking/Security (2.3.1)
   - AFNetworking/Serialization (2.3.1)
   - Base64 (1.0.1)
-  - FastAnimationWithPOP (0.0.2):
-    - pop (~> 1.0.5)
   - hpple (0.2.0)
-  - MBProgressHUD (0.9.2)
-  - pop (1.0.8)
+  - MBProgressHUD (0.9.1)
   - PXAlertView (0.1.1)
   - Reachability (3.1.1)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core (= 3.7.1)
+  - SDWebImage/Core (3.7.1)
   - SVProgressHUD (1.1.3)
   - ZBarSDK (1.3.1)
 
 DEPENDENCIES:
   - AFNetworking/NSURLConnection (~> 2.3.1)
   - Base64 (~> 1.0.1)
-  - FastAnimationWithPOP (~> 0.0.2)
   - hpple (~> 0.2.0)
   - MBProgressHUD (~> 0.8)
   - PXAlertView (~> 0.1.0)
   - Reachability (~> 3.1.1)
   - SDWebImage (~> 3.7.1)
-  - SVProgressHUD (~> 1.0)
+  - SVProgressHUD (~> 1.1.3)
   - ZBarSDK (~> 1.3.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 05b9f6e3aa5ac45bc383b4bb108ef338080a26c7
   Base64: 4924bf3ca6fa559a5161ef717291bd450eb7bd1a
-  FastAnimationWithPOP: a6ec4b6707c3dc4f0b21287337e328c56d16edda
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   PXAlertView: bb8a7e6bb95f73fe3fe091cacd279b683460f084
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.36.0

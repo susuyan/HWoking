@@ -23,12 +23,8 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-   
-
-    
     
     self.versionLbl.text=[NSString stringWithFormat:@"当前版本：%@",VERSION];
 

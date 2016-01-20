@@ -145,27 +145,6 @@
 }
 
 
-#pragma mark 壁纸
-//取得列表 壁纸
-- (void)getWallPaperItemsListatPage:(int)pageNo {
-    
-    
-    
-  NSString *  urlTemplate = @"%@&tab=new&page=%d&version=%@&bundle_id=%@&device=ios";
-    
-    NSString *strUrl=[NSString stringWithFormat:urlTemplate,@"http://93app.com/hd_wallpaper/cat_pics_list.php?type=home&real=1",pageNo,VERSION,BUNDLEID];
-    
-    NSLog(@"getItemsListURL = %@",strUrl);
-    NSURL *url = [NSURL URLWithString:strUrl];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"gzip,deflate" forHTTPHeaderField:@"Accept-Encoding"];
-    MyNetConnection *connection = [[MyNetConnection alloc] initWithRequest:request delegate:self responseType:ResponseGetItems];
-    [_connections setObject:connection forKey:[connection identifier]];
-    connection=nil;
-}
-
-
-
 
 
 #pragma mark netConnection delegate

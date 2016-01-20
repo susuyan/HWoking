@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  KECallsAttribution
+
+  Created by lichenWang on 14-4-10.
+  Copyright (c) 2014年 K.BLOCK. All rights reserved.
+*/
+"Loading..." = "加载更多...";
+
+"Pull down to refresh..." = "下拉刷新...";
+"Release to refresh..." = "松开刷新...";
+
+"Pull up to load more..." = "上拉加载更多...";
+"Release to load more..." = "松开加载更多...";
+
+"Updated %ld minute ago" = "%ld 分钟前更新";
+"Updated %ld minutes ago" = "%ld 分钟前更新";

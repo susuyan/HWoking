@@ -8,7 +8,7 @@
 
 #import "EZPickCarrierVC.h"
 #import "EZSmsInqueryVC.h"
-//#import "EZChargeViewController.h"
+#import "EZChargeViewController.h"
 @import GoogleMobileAds;
 #import "GDTMobBannerView.h"
 @interface EZPickCarrierVC ()<GADBannerViewDelegate,GDTMobBannerViewDelegate>
@@ -56,8 +56,7 @@
         [self.gadView addSubview:_gdtBannerView]; //添加到当前的view中
         [_gdtBannerView loadAdAndShow]; //加载⼲⼴广告并展⽰示
         
-    }else
-    {
+    }else {
         
         self.gadBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
         self.gadBannerView.adUnitID = ADMOB_APP_ID;

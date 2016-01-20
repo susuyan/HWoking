@@ -50,11 +50,6 @@
                           Page:(int)mPage;
 
 
-
-
-- (void)getWallPaperItemsListatPage:(int)pageNo;
-
-
 - (void)getAppInfo;
 
 

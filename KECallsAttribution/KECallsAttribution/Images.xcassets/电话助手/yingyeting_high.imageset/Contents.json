@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "yingyeting_high.png"
+      "filename" : "yingyeting_high.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "yingyeting_high@2x.png"
+      "filename" : "yingyeting_high@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "yingyeting_high@3x.png",
       "scale" : "3x"
     }
   ],

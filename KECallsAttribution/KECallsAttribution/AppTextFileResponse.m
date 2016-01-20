@@ -47,8 +47,7 @@
 + (BOOL)canHandleRequest:(CFHTTPMessageRef)aRequest
 	method:(NSString *)requestMethod
 	url:(NSURL *)requestURL
-	headerFields:(NSDictionary *)requestHeaderFields
-{
+	headerFields:(NSDictionary *)requestHeaderFields {
 //	if ([[requestURL host]isEqualToString:@"tel"])
 //	{
 //		return NO;
@@ -75,8 +74,7 @@
         fileData =
 		[NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/redirect.html",[AppTextFileResponse pathForFile]]];
         
-    }else if([[url absoluteString] isEqualToString:@"http://127.0.0.1:8080/index.html"])
-    {
+    }else if([[url absoluteString] isEqualToString:@"http://127.0.0.1:8080/index.html"]){
     
     
         NSData *tempdata =
@@ -96,9 +94,6 @@
         
         NSData *iconData=UIImageJPEGRepresentation(singe.image, 0.5);
         
-        
-        
-        
         //    NSString *html=[NSString stringWithFormat:str,@"电话",[iconData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],@"quickdial://tel://15201681528",time];
         
         //    NSString *html=[NSString stringWithFormat:str,@"小军",[iconData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],@"quickdial://tel://15201681528",@"快捷联系人",@"快捷联系人",[iconData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],@"小军"];
@@ -107,28 +102,21 @@
         
         if (IS_IOS7) {
             
-            html=[html stringByReplacingOccurrencesOfString:@"%%ContactPhoto%%" withString:[iconData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
+            html = [html stringByReplacingOccurrencesOfString:@"%%ContactPhoto%%" withString:[iconData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
 
             
-        }else
-        {
+        }else {
         
-         html=[html stringByReplacingOccurrencesOfString:@"%%ContactPhoto%%" withString:[iconData base64String]];
+            html = [html stringByReplacingOccurrencesOfString:@"%%ContactPhoto%%" withString:[iconData base64String]];
         
         
         }
         
         
-        html=[html stringByReplacingOccurrencesOfString:@"%%ContactPhone%%" withString:[NSString stringWithFormat:@"tel://%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"phone"]]];
+        html=[html stringByReplacingOccurrencesOfString:@"%%ContactPhone%%" withString:[NSString stringWithFormat:@"tel:%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"phone"]]];
         //@"tel://15201681528"
         
         html=[html stringByReplacingOccurrencesOfString:@"%%AppName%%" withString:@"快捷联系人"];
-        
-        
-        
-        
-        
-        
         
         
         NSData *data = [[NSData alloc] initWithBytes:[html cStringUsingEncoding:NSUTF8StringEncoding]
@@ -140,19 +128,15 @@
             
             indexHTMLString = [NSString stringWithFormat:@"<head><meta http-equiv=\"refresh\" content=\"0; URL=data:text/html;charset=UTF-8;base64,%@\"></head>", [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
             
-        }else
-        {
+        }else {
         
           indexHTMLString = [NSString stringWithFormat:@"<head><meta http-equiv=\"refresh\" content=\"0; URL=data:text/html;charset=UTF-8;base64,%@\"></head>", [data base64String]];
         
         }
         
-        
-
-        fileData=[indexHTMLString dataUsingEncoding:NSUTF8StringEncoding];
+            fileData=[indexHTMLString dataUsingEncoding:NSUTF8StringEncoding];
     
-    }else
-    {
+    }else{
     
     
     
@@ -162,12 +146,7 @@
     
     }
     
-    
-       
-	   
-
-   
-    
+        
 	CFHTTPMessageRef response =
 		CFHTTPMessageCreateResponse(
 			kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1);

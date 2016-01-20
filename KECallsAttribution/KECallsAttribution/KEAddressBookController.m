@@ -25,7 +25,7 @@
 @property (nonatomic)ABAddressBookRef addressBook;
 @property (nonatomic, copy)NSString * phoneNumber;
 @property (nonatomic, copy)NSString * phoneId;
-@property(nonatomic,copy)NSIndexPath *selectedIndexPath;
+@property (nonatomic,copy)NSIndexPath *selectedIndexPath;
 @property (nonatomic, copy)KECoreDataContact * editedContract;
 @property (nonatomic, copy)NSString *databaseFilePath;
 @property (nonatomic, copy)NSString *telDatabaseFilePath;
@@ -41,20 +41,18 @@
 
 @implementation KEAddressBookController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
     return self;
 }
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+    
     self.keyArray = [NSMutableArray array];
     self.dataArray = [NSMutableArray array];
     self.contacts = [NSMutableArray array];
@@ -72,9 +70,7 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"KEContactCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
-    
-    
-   // [self.tableView setTintColor:[UIColor colorWithHex:0x037CFE]];
+      // [self.tableView setTintColor:[UIColor colorWithHex:0x037CFE]];
     
     if (IS_IOS7) {
         
@@ -82,21 +78,15 @@
         
     }
     
-   
-
-    
-    
-    
     
     self.tableView.sectionIndexColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"address_color"]];
-    
-    
-    
     
     
     [self initSearch];
     
     
+    //注册一个更新联系人的通知
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAddressBook) name:@"updateContact" object:nil];
    
 }
 //- (void)change:(id)sender
@@ -108,8 +98,7 @@
 //        self.editButtonItem.title = @"编辑";
 //    }
 //}
--(void)viewWillDisappear:(BOOL)animated
-{
+-(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [MobClick endLogPageView:@"tongxunlu"];
@@ -119,10 +108,7 @@
     [super viewWillAppear:animated];
     
    
-    
     [MobClick beginLogPageView:@"tongxunlu"];
-    
-    
     
     
     //通讯录修改之后，coredata数据需要修改
@@ -130,8 +116,6 @@
     ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
     
     if (self.phoneId) {
-        
-        
         
         
         // 删除CoreData中的对象
@@ -159,35 +143,7 @@
         //更新已经改变的数据
         if (ABMultiValueGetCount(phone)>0) {
             
-            
-            
-        
-            
-            for(int i = 0; i < ABMultiValueGetCount(phone); i++)
-            {
-//                KEContactAddressBook * contact = [[KEContactAddressBook alloc] init];
-//                CFStringRef phoneLabelRef = ABMultiValueCopyLabelAtIndex(phone, i);
-//                CFStringRef localizedPhoneLabelRef = ABAddressBookCopyLocalizedLabel(phoneLabelRef);
-//                
-//                NSString * localizedPhoneLabel = (__bridge NSString *) localizedPhoneLabelRef;
-//                NSString * phoneNumber = (__bridge NSString *)phoneNumberRef;
-                
-//                [contact.phoneInfo setValue:phoneNumber forKey:localizedPhoneLabel];
-//                
-//                //释放内存
-//                phoneLabelRef == NULL ? : CFRelease(phoneLabelRef);
-//                localizedPhoneLabelRef == NULL ? : CFRelease(localizedPhoneLabelRef);
-//                phoneNumberRef == NULL ? : CFRelease(phoneNumberRef);
-//                contact.firstName =
-//                contact.lastName =
-//                contact.imageData =
-//                contact.recordID =
-//                contact.compositeName =  
-//                
-                
-                
-                
-                
+            for(int i = 0; i < ABMultiValueGetCount(phone); i++) {
                 
                 KECoreDataContact * coreDataContact =
                 [NSEntityDescription insertNewObjectForEntityForName:@"KECoreDataContact"
@@ -208,8 +164,7 @@
                 
                 
                 NSString * stringToCheckGroup = nil;
-                if([[self currentLanguage] compare:@"zh-Hans" options:NSCaseInsensitiveSearch]==NSOrderedSame || [[self currentLanguage] compare:@"zh-Hant" options:NSCaseInsensitiveSearch]==NSOrderedSame)
-                {
+                if([[self currentLanguage] compare:@"zh-Hans" options:NSCaseInsensitiveSearch]==NSOrderedSame || [[self currentLanguage] compare:@"zh-Hant" options:NSCaseInsensitiveSearch]==NSOrderedSame) {
                     stringToCheckGroup = coreDataContact.lastName;
                     //NSLog(@"current Language == Chinese");
                 }else{
@@ -220,37 +175,17 @@
                 coreDataContact.contactType = [NSString stringWithFormat:@"%c",str];
                 
                  [self attributionToInquiries:coreDataContact];
-
-                
-               
-                
                 
             }
             if(phone != NULL) CFRelease(phone);
             {
-            CFRelease(person);
+                CFRelease(person);
             }
             
-            
-            
-            
-        
             
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
@@ -269,7 +204,7 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView == self.updateAlertView && buttonIndex == 1) {
-        [self updateAddressBook:nil];
+        [self updateAddressBook];
     }else if(alertView == self.deleteAlertView){
         if (buttonIndex == 1) {
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"deleteReminder"];
@@ -278,30 +213,22 @@
             self.editButtonItem.title = @"编辑";
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"deleteReminder"];
         }
-    }else if (alertView.tag==10000)
-    {
-    
-    
+    }else if (alertView.tag==10000) {
         
         if (buttonIndex==1) {
               [self dealWithDeleteActionWithIndexPath:self.selectedIndexPath];
         }
         
-    
-    
     }
 }
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
-- (void)getDataToCoreData{
-    
+- (void)getDataToCoreData {
     
     [self.contacts removeAllObjects];
     
-    
     [self.dataArray removeAllObjects];
-    
     
     
     for (int i = 0 ; i < 26; i++) {
@@ -351,7 +278,7 @@
     }];
     self.contactsLabel.text = [NSString stringWithFormat:@"%d 位联系人",self.contacts.count];
 }
-- (void)getAddressBookAddCoreData{
+- (void)getAddressBookAddCoreData {
     // 1.  获取MOC
     KBAppDelegate * appDelegate =
     [[UIApplication sharedApplication] delegate];
@@ -363,15 +290,10 @@
     NSMutableArray * array = [contactAddressBook allContacts];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
+        self.progressHUD.labelText=[NSString stringWithFormat:@"正在查询:%d/共:%d",idx+1,(int)array.count];
         
-        
-    self.progressHUD.labelText=[NSString stringWithFormat:@"正在查询:%d/共:%d",idx+1,(int)array.count];
-        
-        
-        
-        
-       KEContactAddressBook * contactAddressBook = obj;
-       NSArray * phoneArray =[contactAddressBook.phoneInfo allValues];
+        KEContactAddressBook * contactAddressBook = obj;
+        NSArray * phoneArray =[contactAddressBook.phoneInfo allValues];
         
         
         // 2. 创建对象
@@ -403,26 +325,22 @@
         [self attributionToInquiries:coreDataContact];
     }];
 }
--(NSString*)currentLanguage
-{
+-(NSString*)currentLanguage {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
     NSString *currentLang = [languages objectAtIndex:0];
     return currentLang;
 }
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     if (tableView==self.tableView) {
-        
-        
+                
         UIView* myView = [[UIView alloc] init];
         
         myView.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:0.92];
@@ -434,20 +352,17 @@
         return myView;
 
         
-    }else
-    {
+    }else {
     
         return nil;
     
     }
-    }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     if (tableView==self.tableView) {
         return self.dataArray.count;
-    }else
-    {
+    }else {
         return 1;
     
     }
@@ -457,8 +372,7 @@
 //{
 //    return [self.dataArray[section] allKeys][0];
 //}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //NSLog(@"section:%d",section);
     
     if (tableView==self.tableView) {
@@ -472,19 +386,17 @@
     }
     
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70;
 }
-- (NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
+- (NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView {
     
     if (tableView==self.tableView) {
         
         
         return self.keyArray;
         
-    }else
-    {
+    }else {
     
         return @[];
     
@@ -504,8 +416,7 @@
     return index;}
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
     if (tableView==self.tableView) {
@@ -513,14 +424,14 @@
         
         static NSString *CellIdentifier = @"Cell";
         KEContactCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
         cell.contact = [self.dataArray[indexPath.section] allValues][0][indexPath.row];
         
         NSLog(@"%@",cell.contact);
         return cell;
 
         
-    }else
-    {
+    }else {
     
         static NSString *CellIdentifier = @"result";
         KEContactCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -535,7 +446,7 @@
     }
     
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
     
@@ -546,15 +457,11 @@
         contact = [self.dataArray[indexPath.section] allValues][0][indexPath.row];
 
         
-    }else
-    {
+    }else {
     
         contact=[self.searchResultArray objectAtIndex:indexPath.row];
     
     }
-    
-    
-    
     
     
     self.phoneNumber = [contact.contactPhoneNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -567,11 +474,6 @@
 
   
     
-    
-    
-    
-    
-    
     self.selectedIndexPath=indexPath;
     
     self.phoneId=[contact.recordID  stringValue];
@@ -579,10 +481,7 @@
     
     
     
-    if(tableView==self.tableView)
-    {
-        
-        
+    if(tableView==self.tableView) {
         
         if (dialAction==nil) {
             dialAction=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拨打电话",@"编辑联系人", @"删除联系人",nil];
@@ -598,8 +497,7 @@
         
         
         
-    }else
-    {
+    }else {
         if (searchAction==nil) {
             
             searchAction=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拨打电话",@"编辑联系人",nil];
@@ -626,17 +524,12 @@
     
   }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 
     NSLog(@"%d",buttonIndex);
     
-    
-    
     switch (buttonIndex) {
             
-            
-          
         case 0:
         {
             NSURL * telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.phoneNumber]];
@@ -648,22 +541,12 @@
             break;
             
         case 1:
-            
-            
         {
-        
             
             ABRecordRef person=[self getPersonWithRecordId:self.phoneId];
         
             [self goToEditPage:person];
-        
-        
-           
             
-            
-            
-            
-        
         }
             break;
 
@@ -684,46 +567,29 @@
             }
             
             
-            
-            
-            
-            
-            
         }
             break;
-
-            
-
             
         default:
             break;
     }
     
     
-    
-   
-
-
 }
 
 
-
-
--(ABRecordRef)getPersonWithRecordId:(NSString *)recordId
-{
+- (ABRecordRef)getPersonWithRecordId:(NSString *)recordId {
+    
+    //TODO: 要加通讯录访问权限设置
+    
+    
     
     ABAddressBookRef addressBook =  ABAddressBookCreateWithOptions(NULL, NULL);
-    
-    
-    
     
     CFArrayRef results = ABAddressBookCopyArrayOfAllPeople(addressBook);
     
     
-    
-    for(int i = 0; i < CFArrayGetCount(results); i++)
-        
-    {
+    for(int i = 0; i < CFArrayGetCount(results); i++) {
         
         ABRecordRef person = CFArrayGetValueAtIndex(results, i);
         
@@ -731,8 +597,7 @@
         
         NSString *tempId =[NSString stringWithFormat:@"%d",ABRecordGetRecordID(person)];
         
-        if(tempId != nil)
-        {
+        if(tempId != nil) {
             
             
             if ([tempId isEqualToString:recordId]) {
@@ -752,9 +617,7 @@
 }
 
 
--(void)goToEditPage:(ABRecordRef)person
-{
-    
+-(void)goToEditPage:(ABRecordRef)person {
     
     
     
@@ -843,7 +706,7 @@
 //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //    }   
 //}
-- (void)deleteContact:(KECoreDataContact*)contact{
+- (void)deleteContact:(KECoreDataContact*)contact {
     // 初始化并创建通讯录对象，记得释放内存
     ABAddressBookRef addressBook;
     addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
@@ -865,13 +728,9 @@
     }
 }
 
--(void)dealWithDeleteActionWithIndexPath:(NSIndexPath *)indexPath
-{
+-(void)dealWithDeleteActionWithIndexPath:(NSIndexPath *)indexPath {
 
     
-    
-
-
     // 删除CoreData中的对象
     //  1.  获取MOC
     KBAppDelegate * appDelegate =
@@ -907,33 +766,32 @@
                     //NSLog(@"indexPathSection:-----------");
                 }
             }];
-        }else{
+        }else {
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
 
         
-        
     
-
-
 }
 
 
 
 
 - (IBAction)back:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)updateAddressBook:(UIButton *)sender {
-   self.progressHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-   self.progressHUD.labelText = @"正在查询...";
-   self.databaseFilePath = [[NSBundle mainBundle] pathForResource:@"database"
+
+- (void)updateAddressBook {
+    //TODO: 更新通讯录
+    self.progressHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    self.progressHUD.labelText = @"正在查询...";
+    self.databaseFilePath = [[NSBundle mainBundle] pathForResource:@"database"
                                                             ofType:@"sqlite3"];
     
     self.telDatabaseFilePath =[[NSBundle mainBundle] pathForResource:@"Region"
-                                                            ofType:@"sqlite"];
-
+                                                              ofType:@"sqlite"];
+    
     
     if (sqlite3_open([self.databaseFilePath UTF8String], &_database)
         != SQLITE_OK) {
@@ -964,11 +822,10 @@
             self.contactsLabel.text = [NSString stringWithFormat:@"%d 位联系人",self.contacts.count];
         });
     });
+
 }
 
-
-
-- (NSString*)checkCarriers:(NSString*)string{
+- (NSString*)checkCarriers:(NSString*)string {
     NSString * carriers = nil;
     if ([[string substringToIndex:3] isEqualToString:@"130"] || [[string substringToIndex:3] isEqualToString:@"131"]) {
         carriers = @"MOBILE130131";
@@ -1004,7 +861,7 @@
     return carriers;
 }
 
-- (void)attributionToInquiries:(KECoreDataContact *)contact{
+- (void)attributionToInquiries:(KECoreDataContact *)contact {
         NSString * testString = nil;
 //        testString = [contact.contactPhoneNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
@@ -1221,36 +1078,22 @@
     
     ABMutableMultiValueRef multi = ABMultiValueCreateMutableCopy(phone);
     
-    
-    
     ABMultiValueRef  phones = ABRecordCopyValue(record, kABPersonPhoneProperty);
 
-    
-  
-    
-    
-    for(int i = 0; i < ABMultiValueGetCount(phones); i++)
-    {
+        
+    for(int i = 0; i < ABMultiValueGetCount(phones); i++) {
         
         CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(phones, i);
         
-        
-        
         NSString * testString=(__bridge NSString *)(phoneNumberRef);
-        
-        
-        
         
         if ([contact.contactPhoneNumber isEqualToString:testString]) {
             
-            
             int index=i;
-            
             
             ABMultiValueReplaceLabelAtIndex(multi, (__bridge CFStringRef)(contact.showCallerID), index);
             
             ABRecordSetValue(record, kABPersonPhoneProperty, multi, NULL);
-            
             
             break;
             
@@ -1269,11 +1112,6 @@
 //    ABRecordSetValue(record, kABPersonPhoneProperty, multi, NULL);
 
     
-    
-    
-    
-    
-    
     // 保存修改的通讯录对象
     ABAddressBookSave(addressBook, NULL);
     // 释放通讯录对象的内存
@@ -1282,8 +1120,7 @@
     }
 }
 - (void)deleteAllObjectsWithEntityName:(NSString *)entityName
-                             inContext:(NSManagedObjectContext *)context
-{
+                             inContext:(NSManagedObjectContext *)context {
     NSFetchRequest *fetchRequest =
     [NSFetchRequest fetchRequestWithEntityName:entityName];
     fetchRequest.includesPropertyValues = NO;
@@ -1305,9 +1142,6 @@
 #pragma mark 恢复通讯录
 
 - (IBAction)recoverAddressBook:(UIButton *)sender {
-    
-    
-    
     
     self.progressHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     self.progressHUD.labelText = @"正在恢复...";
@@ -1331,21 +1165,10 @@
     });
 
     
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 
-
-
-
-- (void)getAddressBookAddCoreDataRecovery{
+- (void)getAddressBookAddCoreDataRecovery {
     // 1.  获取MOC
     KBAppDelegate * appDelegate =
     [[UIApplication sharedApplication] delegate];
@@ -1381,11 +1204,10 @@
         coreDataContact.recordID = [NSNumber numberWithInt:contactAddressBook.recordID];
         
         NSString * stringToCheckGroup = nil;
-        if([[self currentLanguage] compare:@"zh-Hans" options:NSCaseInsensitiveSearch]==NSOrderedSame || [[self currentLanguage] compare:@"zh-Hant" options:NSCaseInsensitiveSearch]==NSOrderedSame)
-        {
+        if([[self currentLanguage] compare:@"zh-Hans" options:NSCaseInsensitiveSearch]==NSOrderedSame || [[self currentLanguage] compare:@"zh-Hant" options:NSCaseInsensitiveSearch]==NSOrderedSame) {
             stringToCheckGroup = contactAddressBook.lastName;
             //NSLog(@"current Language == Chinese");
-        }else{
+        }else {
             stringToCheckGroup = contactAddressBook.firstName;
             // NSLog(@"current Language == English");
         }
@@ -1395,27 +1217,14 @@
     }];
 }
 
-- (void)attributionToInquiriesRecovery:(KECoreDataContact *)contact{
-    
-    
-    
+- (void)attributionToInquiriesRecovery:(KECoreDataContact *)contact {
     
     contact.showCallerID=@"住宅";
-    
-    
-    
     [self changeLocalizedPhoneLabel:contact];
     
-    
-    
-    
-   }
+}
 
-
-
-
--(void)initSearch
-{
+- (void)initSearch {
 
 
     UISearchBar *searchbar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
@@ -1424,17 +1233,12 @@
     
     [searchbar setTintColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"daohang_bg"]]];
     
-    searchbar.delegate=self;
-    
-    
-    
+    searchbar.delegate = self;
     
     
     _mySearchDisplayController = [[UISearchDisplayController  alloc] initWithSearchBar:searchbar contentsController:self];
     
     //searchdispalyCtrl.active = NO;
-    
-    
     
     _mySearchDisplayController.searchResultsDelegate=self;
     
@@ -1444,18 +1248,21 @@
     
     
     self.tableView.tableHeaderView=searchbar;
+    
     [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"KEContactCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"result"];
+    
     self.searchDisplayController.searchResultsTableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
-    _searchResultArray=[NSMutableArray arrayWithCapacity:10];
+    
+    _searchResultArray = [NSMutableArray arrayWithCapacity:10];
 
 
 
 
 }
 //搜索
-#pragma mark searchBar
+#pragma mark - searchBar
 
--(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     NSMutableArray * testArray = [NSMutableArray array];
     [self.contacts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         KECoreDataContact * contact = obj;
@@ -1480,18 +1287,18 @@
     }];
     self.searchResultArray = [NSMutableArray arrayWithArray:testArray];
 }
--(BOOL)searchDisplayController:(UISearchDisplayController*)controller shouldReloadTableForSearchString:(NSString *)searchString {
+- (BOOL)searchDisplayController:(UISearchDisplayController*)controller shouldReloadTableForSearchString:(NSString *)searchString {
     NSString * string = [self.searchDisplayController.searchBar scopeButtonTitles][self.searchDisplayController.searchBar.selectedScopeButtonIndex];
     [self filterContentForSearchText:searchString scope:string];
     return YES;
 }
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
     NSString * string = self.searchDisplayController.searchBar.scopeButtonTitles[searchOption];
     [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:string];
     return YES;
 }
 //判断纯数字
-- (BOOL)isPureInt:(NSString*)string{
+- (BOOL)isPureInt:(NSString*)string {
     NSScanner* scan = [NSScanner scannerWithString:string];
     int val;
     return[scan scanInt:&val] && [scan isAtEnd];
