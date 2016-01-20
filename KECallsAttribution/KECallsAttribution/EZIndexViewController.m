@@ -154,8 +154,14 @@
             break;
         case 1:
         {
+            
             [self.optimizeButton setBackgroundImage:[UIImage imageNamed:@"optimize_btn_bg_2"] forState:UIControlStateNormal];
             [self.optimizeButton setTitle:@"状态良好" forState:UIControlStateNormal];
+            if (![HDefaults sharedDefaults].isOpenHarassment) {
+                [self.optimizeButton setBackgroundImage:[UIImage imageNamed:@"optimize_btn_bg_1"] forState:UIControlStateNormal];
+                [self.optimizeButton setTitle:@"建议优化" forState:UIControlStateNormal];
+
+            }
         }
             break;
         case 2:

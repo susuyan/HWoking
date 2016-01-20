@@ -22,13 +22,16 @@
 #import "ChineseToPinyin.h"
 #import "HVcardImporter.h"
 #import "HDefaults.h"
+#import "HAdvertisementManager.h"
 @interface KEAboutUsViewController ()<MFMailComposeViewControllerDelegate>
 @property(strong,nonatomic)MBProgressHUD *progressHUD;
 @property(copy,nonatomic)NSString *databaseFilePath;
 @property (nonatomic, copy)NSString *query;
 @property (nonatomic)sqlite3 *database;
 
-@property (weak, nonatomic) IBOutlet UISwitch *harassmentSwitch;
+
+
+@property (nonatomic, strong) UIView *bannerView;
 @end
 
 @implementation KEAboutUsViewController
@@ -83,12 +86,7 @@
     urlArray=@[@"https://itunes.apple.com/cn/app/id858988471",@"https://itunes.apple.com/cn/app/id891567883",@"https://itunes.apple.com/cn/app/id889054201",@"https://itunes.apple.com/cn/app/id804456296",@"https://itunes.apple.com/cn/app/id879958475",@"https://itunes.apple.com/cn/app/id891180383"];
     
     
-    self.harassmentSwitch.on = [HDefaults sharedDefaults].isOpenHarassment;
-    if (self.harassmentSwitch.on) {
-        self.harassmentSwitch.enabled = YES;
-    }else {
-        self.harassmentSwitch.enabled = NO;
-    }
+    [self setupADBannerView];
 }
 
 
@@ -110,60 +108,29 @@
     return 3;
 
 }
+- (void)setupADBannerView {
+    _bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-50-64, SCREEN_WIDTH, 50)];
+    [self.view addSubview:_bannerView];
+    HAdvertisementManager *manager = [HAdvertisementManager shareManager];
+    [manager showBannerToParentView:_bannerView rootViewController:self bannerAdUnitID:ADMOB_APP_ID appKey:nil placementID:nil];
+}
+#pragma mark - IBAction
 - (IBAction)back:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
-}
-- (IBAction)harassmentSwitch:(UISwitch *)sender {
-    if (!sender.on) {
-        
-        [HVcardImporter CheckAddressBookAuthorization:^(bool isAuthorized) {
-            if (isAuthorized) {
-                HVcardImporter *importer = [[HVcardImporter alloc] init];
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-                hud.mode = MBProgressHUDModeIndeterminate;
-                hud.labelText = @"正在移除号码库";
-                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    // Do something...
-                    [importer closeAntiHarassmentMode];
-                    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"openHarassment"];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        hud.labelText = @"移除完毕";
-                        [hud hide:YES];
-                    });
-                });
-                
-            }else {
-                //TODO: 做出通讯录权限提示。
-                UIAlertView * alart = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"请您设置允许APP访问您的通讯录\n设置>隐私>通讯录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alart show];
-                self.harassmentSwitch.on = YES;
-            }
-        }];
-        
-        
-    }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     switch (indexPath.section) {
+            
+       
         case 0:
         {
-            if (indexPath.row == 0) {
-                [tableView deselectRowAtIndexPath:indexPath animated:YES];
-                [tableView cellForRowAtIndexPath:indexPath].selectionStyle = UITableViewCellSelectionStyleNone;
-            }
+            
         }
             
             break;
         case 1:
-        {
-           
-        }
-            
-            break;
-        case 2:
         {
             if (indexPath.row == 0) {
                 [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@?mt=8",APPLE_ID]]];
@@ -173,8 +140,9 @@
         }
             
             break;
-        case 3:
+        case 2:
         {
+            
             if (indexPath.row == 0) {
                 
                 EZFeedBackViewController *feedback=[[EZFeedBackViewController alloc]init];
@@ -186,6 +154,7 @@
                 
                 
             }
+
         }
             
             break;

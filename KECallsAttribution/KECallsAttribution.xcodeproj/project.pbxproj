@@ -287,6 +287,7 @@
 		C24736911C4DD5D0009E64AC /* UIDevice+HInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C24736901C4DD5D0009E64AC /* UIDevice+HInfo.m */; };
 		C24736951C4DE438009E64AC /* HOptimizeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24736941C4DE438009E64AC /* HOptimizeTableViewController.m */; };
 		C24736981C4DE881009E64AC /* HOptimizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24736971C4DE881009E64AC /* HOptimizeCell.m */; };
+		C247369B1C4E37AC009E64AC /* HAdvertisementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C247369A1C4E37AC009E64AC /* HAdvertisementManager.m */; };
 		C265A1731C2E33DA00CE9C72 /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1651C2E33DA00CE9C72 /* ChannelView.m */; };
 		C265A1741C2E33DA00CE9C72 /* checkImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1671C2E33DA00CE9C72 /* checkImage.m */; };
 		C265A1751C2E33DA00CE9C72 /* EZAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A1691C2E33DA00CE9C72 /* EZAppHelper.m */; };
@@ -823,6 +824,8 @@
 		C24736941C4DE438009E64AC /* HOptimizeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptimizeTableViewController.m; sourceTree = "<group>"; };
 		C24736961C4DE881009E64AC /* HOptimizeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptimizeCell.h; sourceTree = "<group>"; };
 		C24736971C4DE881009E64AC /* HOptimizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptimizeCell.m; sourceTree = "<group>"; };
+		C24736991C4E37AC009E64AC /* HAdvertisementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAdvertisementManager.h; sourceTree = "<group>"; };
+		C247369A1C4E37AC009E64AC /* HAdvertisementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAdvertisementManager.m; sourceTree = "<group>"; };
 		C265A1641C2E33DA00CE9C72 /* ChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelView.h; sourceTree = "<group>"; };
 		C265A1651C2E33DA00CE9C72 /* ChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelView.m; sourceTree = "<group>"; };
 		C265A1661C2E33DA00CE9C72 /* checkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkImage.h; sourceTree = "<group>"; };
@@ -1950,6 +1953,8 @@
 		C247368E1C4DD587009E64AC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C24736991C4E37AC009E64AC /* HAdvertisementManager.h */,
+				C247369A1C4E37AC009E64AC /* HAdvertisementManager.m */,
 				C247368F1C4DD5D0009E64AC /* UIDevice+HInfo.h */,
 				C24736901C4DD5D0009E64AC /* UIDevice+HInfo.m */,
 			);
@@ -2392,6 +2397,7 @@
 				93F5F07218EC038E00BC6FCD /* KEPostSearchCell.m in Sources */,
 				93F5F06D18EC038E00BC6FCD /* KEIPPhoneNumberController.m in Sources */,
 				8DCE5C3D19A1F74D00F8F3EA /* MJRefreshHeaderView.m in Sources */,
+				C247369B1C4E37AC009E64AC /* HAdvertisementManager.m in Sources */,
 				C2AD5CE41C40A1710001798C /* HSettingsController.m in Sources */,
 				C276F7B41C23D42D0035A7E7 /* HLocaleSettingsController.m in Sources */,
 				8DF7368E1B05F1730030E839 /* RefreshHeaderAndFooterView.m in Sources */,

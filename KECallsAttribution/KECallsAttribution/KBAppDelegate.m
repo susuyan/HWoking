@@ -594,22 +594,9 @@
                 
                 
                 
-                
-                
-                
-                
                 self.urlScheme = array[i][@"url"];
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+                                
                 //已安装跳出当前循环
                 if ([self APCheckIfAppInstalled2:[array objectAtIndex:i][@"url_scheme"]]) {
                     
@@ -642,16 +629,7 @@
             }
             
             
-            
-            
-            
-            
         }
-        
-        
-        
-        
- 
         
     }
 }
