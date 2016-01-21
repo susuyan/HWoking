@@ -159,7 +159,7 @@ static NSString * const HLocaleCellID = @"HLocaleCellID";
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstUpdate"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }else {
-        
+        NSDate *date1 = [NSDate date];
         [HVcardImporter CheckAddressBookAuthorization:^(bool isAuthorized) {
             if (isAuthorized) {//已获取通讯录权限
                 HVcardImporter *importer = [[HVcardImporter alloc] init];
@@ -194,11 +194,13 @@ static NSString * const HLocaleCellID = @"HLocaleCellID";
                 }
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     // Do something...
-                    [importer deleteVCF];
+                    [importer closeAntiHarassmentMode];
+                    
                     [importer parseWithAreaString:areaString];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         hud.labelText = @"更新完毕";
                         [hud hide:YES];
+                        NSLog(@"%f",[[NSDate date] timeIntervalSinceDate:date1]);
                     });
                 });
                 

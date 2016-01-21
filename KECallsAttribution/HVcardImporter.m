@@ -68,8 +68,6 @@
         
         [self.phoneNumbers removeAllObjects];
         [self.labels removeAllObjects];
-    }else if ([line hasPrefix:@"TEL"]) {
-        [self parseNumberLabel:line];
     }else if ([line hasPrefix:@"item"]) {
         [self parseNumberLabel:line];
     }
@@ -81,20 +79,13 @@
     NSString *temp0 = [components objectAtIndex:0];
     NSString *temp1 = [components objectAtIndex:1];
     
-    if ([line hasPrefix:@"TEL"]) {
-        
-        [self.labels addObject:@"#手机归属地识别"];
+    if ([self isContainString:@"TEL" fromString:temp0]) {
         [self.phoneNumbers addObject:temp1];
-        
     }else {
-        
-        if ([self isContainString:@"TEL" fromString:temp0]) {
-            [self.phoneNumbers addObject:temp1];
-        }else {
-            [self.labels addObject:temp1];
-        }
-        
+        [self.labels addObject:temp1];
     }
+        
+    
     
     
 }
@@ -124,6 +115,7 @@
     NSString *markedContactsID = [defaults stringForKey:@"markedContactsID"];
     if (markedContactsID) {
         [self addMarkedContactsWithPersonID:markedContactsID markType:markType phoneNumber:phoneNumber];
+
         
     }else {
         [self createLabeledContact:markType phoneNumber:phoneNumber];
@@ -161,7 +153,7 @@
 }
 
 - (void)addContactsIcon:(ABRecordRef)personRef{
-    UIImage *image = [UIImage imageNamed:@"contact_icon.png"];
+    UIImage *image = [UIImage imageNamed:@"contact_icon"];
     NSData *imageData = UIImagePNGRepresentation(image);
     CFDataRef cfData = CFDataCreate(NULL, [imageData bytes], [imageData length]);
     ABPersonSetImageData(personRef, cfData, NULL);
@@ -189,8 +181,8 @@
 //创建一个被标记的号码的这个的一个联系人
 - (void)createLabeledContact:(NSString *)markType phoneNumber:(NSString *)phoneNumber {
     ABRecordRef person = ABPersonCreate();
-    NSArray *phones = [NSArray arrayWithObjects:@"#0被标记的号码",phoneNumber,nil];
-    NSArray *labels = [NSArray arrayWithObjects:@"#防骚扰电话识别",markType,nil];
+    NSArray *phones = [NSArray arrayWithObjects:@"#0biaojihaoma",phoneNumber,nil];
+    NSArray *labels = [NSArray arrayWithObjects:@"#手机归属地电话识别",markType,nil];
     ABMultiValueRef dicc =ABMultiValueCreateMutable(kABMultiStringPropertyType);
     for (int i = 0; i < [phones count]; i ++) {
         ABMultiValueIdentifier obj = ABMultiValueAddValueAndLabel(dicc,(__bridge CFStringRef)[phones objectAtIndex:i], (__bridge CFStringRef)[labels objectAtIndex:i], &obj);
@@ -198,6 +190,7 @@
 
     ABRecordSetValue(person, kABPersonPhoneProperty, dicc, NULL);
     ABAddressBookAddRecord(_addressBook, person, NULL);
+    [self addContactsIcon:person];
     ABAddressBookSave(_addressBook, NULL);
     taggedContactID = ABRecordGetRecordID(person);
     [[NSUserDefaults standardUserDefaults] setObject:@(taggedContactID) forKey:@"markedContactsID"];

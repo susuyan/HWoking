@@ -48,9 +48,6 @@
     }
 
     
-    
-    
-    
     [self initTips];
     
     
@@ -190,7 +187,6 @@
 - (void)initTips {
 
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(changeTips) userInfo:nil repeats:YES];
-
 
     tips_index=0;
     
@@ -536,9 +532,7 @@
 
     if (string.length > 7) {
         //处理粘贴
-        
-        self.phoneTxt.text = string;
-        NSLog(@"---粘贴板号码1：%@----",string);
+    
         NSString *pasteStr = [string substringToIndex:8];
         if ([pasteStr hasPrefix:@"0"]) {
             //固话
@@ -639,11 +633,11 @@
             
         }
         
-        if (range.location > 10) {
-            return NO;
-        }else{
-            return YES;
-        }
+//        if (range.location > 10) {
+//            return NO;
+//        }else{
+//            return YES;
+//        }
 
     }
     

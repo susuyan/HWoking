@@ -23,92 +23,117 @@
 
 @implementation TodayViewController
 
+#pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     [self getCopyString];
     
     currentKey=@"12994";
     currentSign=@"7dda216c0f371003681e03736feb3de2";
     // Do any additional setup after loading the view from its nib.
-}
-- (void)dealloc {
+    
     
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [self getCopyString];
+    copyNumber =[copyNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    copyNumber =[copyNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    copyNumber =[copyNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    copyNumber=[copyNumber stringByReplacingOccurrencesOfString:@"+86" withString:@""];
+    copyNumber = [[copyNumber componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsJoinedByString:@""];
+
+    if ([self matchNumber:copyNumber]) {
+        
+        self.tipsLbl.hidden=YES;
+        
+        self.loadingLbl.text=[NSString stringWithFormat:@"正在查询 %@",copyNumber];
+        
+        self.loadingLbl.hidden=NO;
+        
+        self.markLbl.text = @"正在查询...";
+        [self inqueryNumber];
+     
+        //TODO: 添加
+    }
+
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - widget Protocol
+
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
     
     
-    self.tipsLbl.hidden=NO;
-    
-    
-    self.loadingLbl.hidden=YES;
-    
-    
-    self.showResultView.hidden=YES;
-    
-    
-    self.markLbl.text=@"";
-    
-    self.addressAndCarrierLbl.text=@"";
-    
-    [self getCopyString];
-    
-    
-    
-    // Perform any setup necessary in order to update the view.
-    
-    // If an error is encountered, use NCUpdateResultFailed
-    // If there's no update required, use NCUpdateResultNoData
-    // If there's an update, use NCUpdateResultNewData
-    
-    
-    
-    
-    
-    NSLog(@"%@",copyNumber);
-    
-    
-    copyNumber=[copyNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
-    copyNumber=[copyNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    copyNumber=[copyNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
-    copyNumber=[copyNumber stringByReplacingOccurrencesOfString:@"+86" withString:@""];
-    copyNumber = [[copyNumber componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsJoinedByString:@""];
-    
-    
-    
-    if ([self matchNumber:copyNumber]) {
-        
-        
-        self.tipsLbl.hidden=YES;
-        
-        
-        self.loadingLbl.text=[NSString stringWithFormat:@"正在查询 %@",copyNumber];
-        
-        
-        self.loadingLbl.hidden=NO;
-        
-        
-        
-        [self inqueryNumber];
-        
-        
-        
-    }
-    
-    
+//    self.tipsLbl.hidden=NO;
+//    
+//    
+//    self.loadingLbl.hidden=YES;
+//    
+//    
+//    self.showResultView.hidden=YES;
+//    
+//    
+//    self.markLbl.text=@"";
+//    
+//    self.addressAndCarrierLbl.text=@"";
+//    
+//    [self getCopyString];
+//    
+//    
+//    
+//    // Perform any setup necessary in order to update the view.
+//    
+//    // If an error is encountered, use NCUpdateResultFailed
+//    // If there's no update required, use NCUpdateResultNoData
+//    // If there's an update, use NCUpdateResultNewData
+//    
+//    
+//    NSLog(@"%@",copyNumber);
+//    
+//    
+//    copyNumber =[copyNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+//    copyNumber =[copyNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+//    copyNumber =[copyNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+//    copyNumber=[copyNumber stringByReplacingOccurrencesOfString:@"+86" withString:@""];
+//    copyNumber = [[copyNumber componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsJoinedByString:@""];
+//    
+//    
+//    
+//    if ([self matchNumber:copyNumber]) {
+//        
+//        
+//        self.tipsLbl.hidden=YES;
+//        
+//        
+//        self.loadingLbl.text=[NSString stringWithFormat:@"正在查询 %@",copyNumber];
+//        
+//        
+//        self.loadingLbl.hidden=NO;
+//        
+//        
+//        
+//        [self inqueryNumber];
+//        
+//        
+//        
+//    }
+//    
+//    
+//    completionHandler(NCUpdateResultNewData);
+
     completionHandler(NCUpdateResultNewData);
 }
 
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
     
     
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return UIEdgeInsetsZero;
     
     
 }
@@ -170,7 +195,7 @@
                 
                 
                 
-                //  self.markLbl.text=@"未发现骚扰行为";
+               // self.markLbl.text=@"未发现骚扰行为";
                 
                 
                 self.numberLbl.text=copyNumber;
@@ -417,7 +442,7 @@
                 
                 
                 UIPasteboard *board=[UIPasteboard generalPasteboard];
-                board.string=@"";
+                board.string = @"";
                 
                 
                 

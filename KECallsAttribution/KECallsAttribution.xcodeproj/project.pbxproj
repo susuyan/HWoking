@@ -243,18 +243,20 @@
 		C237EAB71BEB0B18008A4052 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C237EAB61BEB0B18008A4052 /* CoreMotion.framework */; };
 		C237EAB91BEB0B29008A4052 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C237EAB81BEB0B29008A4052 /* Social.framework */; };
 		C237EABF1BEB23AF008A4052 /* EZNativeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C237EABE1BEB23AF008A4052 /* EZNativeView.m */; };
-		C245CBD31C1EA3A100C431C9 /* 北京.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBC71C1EA3A100C431C9 /* 北京.vcf */; };
-		C245CBD41C1EA3A100C431C9 /* 成都.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBC81C1EA3A100C431C9 /* 成都.vcf */; };
-		C245CBD51C1EA3A100C431C9 /* 重庆.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBC91C1EA3A100C431C9 /* 重庆.vcf */; };
-		C245CBD61C1EA3A100C431C9 /* 福州.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBCA1C1EA3A100C431C9 /* 福州.vcf */; };
-		C245CBD71C1EA3A100C431C9 /* 广州.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBCB1C1EA3A100C431C9 /* 广州.vcf */; };
-		C245CBD81C1EA3A100C431C9 /* 杭州.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBCC1C1EA3A100C431C9 /* 杭州.vcf */; };
-		C245CBD91C1EA3A100C431C9 /* 济南.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBCD1C1EA3A100C431C9 /* 济南.vcf */; };
-		C245CBDA1C1EA3A100C431C9 /* 南京.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBCE1C1EA3A100C431C9 /* 南京.vcf */; };
-		C245CBDB1C1EA3A100C431C9 /* 其他城市.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBCF1C1EA3A100C431C9 /* 其他城市.vcf */; };
-		C245CBDC1C1EA3A100C431C9 /* 上海.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBD01C1EA3A100C431C9 /* 上海.vcf */; };
-		C245CBDD1C1EA3A100C431C9 /* 深圳.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBD11C1EA3A100C431C9 /* 深圳.vcf */; };
-		C245CBDE1C1EA3A100C431C9 /* 天津.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C245CBD21C1EA3A100C431C9 /* 天津.vcf */; };
+		C24736A01C508C38009E64AC /* 武汉.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C247369C1C508C38009E64AC /* 武汉.vcf */; };
+		C24736A11C508C38009E64AC /* 广州.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C247369D1C508C38009E64AC /* 广州.vcf */; };
+		C24736A21C508C38009E64AC /* 南京.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C247369E1C508C38009E64AC /* 南京.vcf */; };
+		C24736A31C508C38009E64AC /* 深圳.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C247369F1C508C38009E64AC /* 深圳.vcf */; };
+		C24736AC1C508C4F009E64AC /* 成都.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C24736A41C508C4F009E64AC /* 成都.vcf */; };
+		C24736AD1C508C4F009E64AC /* 西安.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C24736A51C508C4F009E64AC /* 西安.vcf */; };
+		C24736AE1C508C4F009E64AC /* 郑州.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C24736A61C508C4F009E64AC /* 郑州.vcf */; };
+		C24736AF1C508C4F009E64AC /* 重庆.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C24736A71C508C4F009E64AC /* 重庆.vcf */; };
+		C24736B01C508C4F009E64AC /* 北京.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C24736A81C508C4F009E64AC /* 北京.vcf */; };
+		C24736B11C508C4F009E64AC /* 上海.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C24736A91C508C4F009E64AC /* 上海.vcf */; };
+		C24736B21C508C4F009E64AC /* 天津.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C24736AA1C508C4F009E64AC /* 天津.vcf */; };
+		C24736B31C508C4F009E64AC /* 其他城市.vcf in Resources */ = {isa = PBXBuildFile; fileRef = C24736AB1C508C4F009E64AC /* 其他城市.vcf */; };
+		C24736B61C50B400009E64AC /* widget_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24736B41C50B400009E64AC /* widget_call@2x.png */; };
+		C24736B71C50B400009E64AC /* widget_cannel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24736B51C50B400009E64AC /* widget_cannel@2x.png */; };
 		C248498C1C193C3000C89EC7 /* HAdvertisementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C248498A1C193C3000C89EC7 /* HAdvertisementManager.m */; };
 		C24849941C194FD800C89EC7 /* ios6_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C24849921C194FD800C89EC7 /* ios6_1.png */; };
 		C24849951C194FD800C89EC7 /* ios7_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C24849931C194FD800C89EC7 /* ios7_1.png */; };
@@ -695,18 +697,20 @@
 		C237EAB81BEB0B29008A4052 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C237EABD1BEB23AF008A4052 /* EZNativeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZNativeView.h; sourceTree = "<group>"; };
 		C237EABE1BEB23AF008A4052 /* EZNativeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZNativeView.m; sourceTree = "<group>"; };
-		C245CBC71C1EA3A100C431C9 /* 北京.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "北京.vcf"; sourceTree = "<group>"; };
-		C245CBC81C1EA3A100C431C9 /* 成都.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "成都.vcf"; sourceTree = "<group>"; };
-		C245CBC91C1EA3A100C431C9 /* 重庆.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "重庆.vcf"; sourceTree = "<group>"; };
-		C245CBCA1C1EA3A100C431C9 /* 福州.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "福州.vcf"; sourceTree = "<group>"; };
-		C245CBCB1C1EA3A100C431C9 /* 广州.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "广州.vcf"; sourceTree = "<group>"; };
-		C245CBCC1C1EA3A100C431C9 /* 杭州.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "杭州.vcf"; sourceTree = "<group>"; };
-		C245CBCD1C1EA3A100C431C9 /* 济南.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "济南.vcf"; sourceTree = "<group>"; };
-		C245CBCE1C1EA3A100C431C9 /* 南京.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "南京.vcf"; sourceTree = "<group>"; };
-		C245CBCF1C1EA3A100C431C9 /* 其他城市.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "其他城市.vcf"; sourceTree = "<group>"; };
-		C245CBD01C1EA3A100C431C9 /* 上海.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "上海.vcf"; sourceTree = "<group>"; };
-		C245CBD11C1EA3A100C431C9 /* 深圳.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "深圳.vcf"; sourceTree = "<group>"; };
-		C245CBD21C1EA3A100C431C9 /* 天津.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "天津.vcf"; sourceTree = "<group>"; };
+		C247369C1C508C38009E64AC /* 武汉.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "武汉.vcf"; sourceTree = "<group>"; };
+		C247369D1C508C38009E64AC /* 广州.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "广州.vcf"; sourceTree = "<group>"; };
+		C247369E1C508C38009E64AC /* 南京.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "南京.vcf"; sourceTree = "<group>"; };
+		C247369F1C508C38009E64AC /* 深圳.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "深圳.vcf"; sourceTree = "<group>"; };
+		C24736A41C508C4F009E64AC /* 成都.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "成都.vcf"; sourceTree = "<group>"; };
+		C24736A51C508C4F009E64AC /* 西安.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "西安.vcf"; sourceTree = "<group>"; };
+		C24736A61C508C4F009E64AC /* 郑州.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "郑州.vcf"; sourceTree = "<group>"; };
+		C24736A71C508C4F009E64AC /* 重庆.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "重庆.vcf"; sourceTree = "<group>"; };
+		C24736A81C508C4F009E64AC /* 北京.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "北京.vcf"; sourceTree = "<group>"; };
+		C24736A91C508C4F009E64AC /* 上海.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "上海.vcf"; sourceTree = "<group>"; };
+		C24736AA1C508C4F009E64AC /* 天津.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "天津.vcf"; sourceTree = "<group>"; };
+		C24736AB1C508C4F009E64AC /* 其他城市.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "其他城市.vcf"; sourceTree = "<group>"; };
+		C24736B41C50B400009E64AC /* widget_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "widget_call@2x.png"; sourceTree = "<group>"; };
+		C24736B51C50B400009E64AC /* widget_cannel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "widget_cannel@2x.png"; sourceTree = "<group>"; };
 		C24849891C193C3000C89EC7 /* HAdvertisementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAdvertisementManager.h; sourceTree = "<group>"; };
 		C248498A1C193C3000C89EC7 /* HAdvertisementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAdvertisementManager.m; sourceTree = "<group>"; };
 		C24849921C194FD800C89EC7 /* ios6_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios6_1.png; sourceTree = "<group>"; };
@@ -996,6 +1000,8 @@
 		8D5F65141B4BC156004D7547 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C24736B41C50B400009E64AC /* widget_call@2x.png */,
+				C24736B51C50B400009E64AC /* widget_cannel@2x.png */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -1689,18 +1695,18 @@
 		93F5EF8118EC021C00BC6FCD /* PhoneNumberData */ = {
 			isa = PBXGroup;
 			children = (
-				C245CBC71C1EA3A100C431C9 /* 北京.vcf */,
-				C245CBC81C1EA3A100C431C9 /* 成都.vcf */,
-				C245CBC91C1EA3A100C431C9 /* 重庆.vcf */,
-				C245CBCA1C1EA3A100C431C9 /* 福州.vcf */,
-				C245CBCB1C1EA3A100C431C9 /* 广州.vcf */,
-				C245CBCC1C1EA3A100C431C9 /* 杭州.vcf */,
-				C245CBCD1C1EA3A100C431C9 /* 济南.vcf */,
-				C245CBCE1C1EA3A100C431C9 /* 南京.vcf */,
-				C245CBCF1C1EA3A100C431C9 /* 其他城市.vcf */,
-				C245CBD01C1EA3A100C431C9 /* 上海.vcf */,
-				C245CBD11C1EA3A100C431C9 /* 深圳.vcf */,
-				C245CBD21C1EA3A100C431C9 /* 天津.vcf */,
+				C24736A41C508C4F009E64AC /* 成都.vcf */,
+				C24736A51C508C4F009E64AC /* 西安.vcf */,
+				C24736A61C508C4F009E64AC /* 郑州.vcf */,
+				C24736A71C508C4F009E64AC /* 重庆.vcf */,
+				C24736A81C508C4F009E64AC /* 北京.vcf */,
+				C24736A91C508C4F009E64AC /* 上海.vcf */,
+				C24736AA1C508C4F009E64AC /* 天津.vcf */,
+				C24736AB1C508C4F009E64AC /* 其他城市.vcf */,
+				C247369C1C508C38009E64AC /* 武汉.vcf */,
+				C247369D1C508C38009E64AC /* 广州.vcf */,
+				C247369E1C508C38009E64AC /* 南京.vcf */,
+				C247369F1C508C38009E64AC /* 深圳.vcf */,
 				8D700F3E19E67E900061B02A /* Region.sqlite */,
 				93F5EF8818EC023800BC6FCD /* KEPostcode.k */,
 				93F5EF8218EC021C00BC6FCD /* database.sqlite3 */,
@@ -1965,6 +1971,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C24736B71C50B400009E64AC /* widget_cannel@2x.png in Resources */,
+				C24736B61C50B400009E64AC /* widget_call@2x.png in Resources */,
 				8D5F650D1B4BBEDE004D7547 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1973,7 +1981,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C245CBD41C1EA3A100C431C9 /* 成都.vcf in Resources */,
 				8D3B83DB1AEE325000B89A9F /* ios7_2.png in Resources */,
 				8DEC2C2A1AB189D800D2F673 /* bubble-flat-incoming.png in Resources */,
 				8D3B83D81AEE325000B89A9F /* ios6_4.png in Resources */,
@@ -1986,8 +1993,7 @@
 				8DEC2C411AB189D800D2F673 /* input-field@2x.png in Resources */,
 				8DC5A9F119D9402100DDB148 /* iTunesArtwork in Resources */,
 				8D505A8B1A403AE30041661F /* AssetsPickerChecked@2x.png in Resources */,
-				C245CBD51C1EA3A100C431C9 /* 重庆.vcf in Resources */,
-				C245CBD81C1EA3A100C431C9 /* 杭州.vcf in Resources */,
+				C24736A11C508C38009E64AC /* 广州.vcf in Resources */,
 				8D3B83D91AEE325000B89A9F /* ios6_5.png in Resources */,
 				8DEC2BB51AB137FF00D2F673 /* UMFeedbackLocalizable.strings in Resources */,
 				8D700F3F19E67E900061B02A /* Region.sqlite in Resources */,
@@ -1997,11 +2003,13 @@
 				8D3B83D61AEE325000B89A9F /* ios6_2.png in Resources */,
 				8DC5A9F319D9402100DDB148 /* iTunesArtwork@2x in Resources */,
 				93F5F07318EC038E00BC6FCD /* KEPostSearchCell.xib in Resources */,
+				C24736B21C508C4F009E64AC /* 天津.vcf in Resources */,
 				93F5EF8A18EC023800BC6FCD /* KEPostcode.k in Resources */,
 				8D60D3B91AB2A96500615BCD /* UMSShareListController.xib in Resources */,
 				8DEC2C291AB189D800D2F673 /* bubble-flat-incoming-selected@2x.png in Resources */,
 				8DEC2C461AB189D800D2F673 /* send.png in Resources */,
 				8DEC2C2F1AB189D800D2F673 /* bubble-flat-outgoing-selected@2x.png in Resources */,
+				C24736A01C508C38009E64AC /* 武汉.vcf in Resources */,
 				8DEC2C3C1AB189D800D2F673 /* input-bar-flat.png in Resources */,
 				C237EAAB1BEB0555008A4052 /* adwo_videoPlayerControl.html in Resources */,
 				8D79A4AB19BEF9A500F04AD4 /* redirect.html in Resources */,
@@ -2018,15 +2026,12 @@
 				8D60D3B61AB2A96500615BCD /* UMShareEditViewControlleriPad.xib in Resources */,
 				93F5F07A18EC043100BC6FCD /* Main.storyboard in Resources */,
 				93F5EF8718EC021C00BC6FCD /* PhoneNumberData.plist in Resources */,
-				C245CBD31C1EA3A100C431C9 /* 北京.vcf in Resources */,
 				93F5EF8518EC021C00BC6FCD /* database.sqlite3 in Resources */,
-				C245CBDB1C1EA3A100C431C9 /* 其他城市.vcf in Resources */,
 				93F5EF5918EC013B00BC6FCD /* InfoPlist.strings in Resources */,
-				C245CBDC1C1EA3A100C431C9 /* 上海.vcf in Resources */,
 				8DEC2C431AB189D800D2F673 /* PhotoIcon@2x.png in Resources */,
-				C245CBDA1C1EA3A100C431C9 /* 南京.vcf in Resources */,
 				C270A0121BAA8C0500054EDD /* EZMoreCell.xib in Resources */,
 				931D3F7A18FD232900B4A946 /* EZGuideCell.xib in Resources */,
+				C24736A21C508C38009E64AC /* 南京.vcf in Resources */,
 				8DEC2C521AB1A75C00D2F673 /* fb_default_user_portrait.png in Resources */,
 				8D3B83DD1AEE325000B89A9F /* ios7_4.png in Resources */,
 				8D505A941A403AE30041661F /* ZYQAssetPicker.Bundle in Resources */,
@@ -2039,38 +2044,41 @@
 				8D3B83DC1AEE325000B89A9F /* ios7_3.png in Resources */,
 				8DEC2C491AB189D800D2F673 /* messageSent.aiff in Resources */,
 				8DEC2C301AB189D800D2F673 /* bubble-flat-outgoing.png in Resources */,
+				C24736AF1C508C4F009E64AC /* 重庆.vcf in Resources */,
 				8D3B83E01AEE356E00B89A9F /* guide.xib in Resources */,
 				8DFDD6CA1AE8E5A5004F972E /* EZCustomActionView.xib in Resources */,
 				8D60D3B41AB2A96500615BCD /* UMSCommentInputControlleriPad.xib in Resources */,
 				8DE8AEE21A2322C2002ECA0F /* smsinfo.plist in Resources */,
-				C245CBDE1C1EA3A100C431C9 /* 天津.vcf in Resources */,
 				8D10B9B11A3A93220000EE31 /* b27_icon_star_gray@2x.png in Resources */,
 				8DEC2C3E1AB189D800D2F673 /* input-bar.png in Resources */,
 				8DEC2C3D1AB189D800D2F673 /* input-bar-flat@2x.png in Resources */,
 				8D79A4AC19BEF9A500F04AD4 /* index.html in Resources */,
+				C24736AC1C508C4F009E64AC /* 成都.vcf in Resources */,
 				8D60D3BD1AB2A96500615BCD /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				C24736A31C508C38009E64AC /* 深圳.vcf in Resources */,
 				8DEC2C471AB189D800D2F673 /* send@2x.png in Resources */,
 				8D3B83D71AEE325000B89A9F /* ios6_3.png in Resources */,
-				C245CBD91C1EA3A100C431C9 /* 济南.vcf in Resources */,
+				C24736AE1C508C4F009E64AC /* 郑州.vcf in Resources */,
 				C24849941C194FD800C89EC7 /* ios6_1.png in Resources */,
 				8DEC2C481AB189D800D2F673 /* messageReceived.aiff in Resources */,
 				8DEC2C2E1AB189D800D2F673 /* bubble-flat-outgoing-selected.png in Resources */,
-				C245CBD61C1EA3A100C431C9 /* 福州.vcf in Resources */,
+				C24736B11C508C4F009E64AC /* 上海.vcf in Resources */,
 				8D60D3BA1AB2A96500615BCD /* UMSocialSDKResourcesNew.bundle in Resources */,
 				8DEC2C281AB189D800D2F673 /* bubble-flat-incoming-selected.png in Resources */,
 				8D60D3B51AB2A96500615BCD /* UMShareEditViewController.xib in Resources */,
 				93F5F06118EC038E00BC6FCD /* icon120.png in Resources */,
-				C245CBD71C1EA3A100C431C9 /* 广州.vcf in Resources */,
 				C270A0151BAA8C0500054EDD /* EZMergeCell.xib in Resources */,
+				C24736B31C508C4F009E64AC /* 其他城市.vcf in Resources */,
 				8D742F981B6F3F280086C068 /* TestAdmob.xib in Resources */,
 				8D60D3B21AB2A96500615BCD /* UMSCommentDetailController.xib in Resources */,
 				931D3F7018FD232900B4A946 /* blackArrow.png in Resources */,
 				93F5F06918EC038E00BC6FCD /* KEContactCell.xib in Resources */,
-				C245CBDD1C1EA3A100C431C9 /* 深圳.vcf in Resources */,
 				93F5EF8618EC021C00BC6FCD /* number.plist in Resources */,
 				8D505A8A1A403AE30041661F /* addImage.png in Resources */,
 				8DEC2C541AB1A76F00D2F673 /* fb_default_dev_portrait.png in Resources */,
 				8D3CBF2D192AF9F5005F59FA /* ECCarCodeSearchCell.xib in Resources */,
+				C24736B01C508C4F009E64AC /* 北京.vcf in Resources */,
+				C24736AD1C508C4F009E64AC /* 西安.vcf in Resources */,
 				8D3BEE0D19D400090021B0CB /* PushConfig.plist in Resources */,
 				8D01F7AF1980AD9100C0A3BC /* ECResultHeaderViewController.xib in Resources */,
 				8D505A8F1A403AE30041661F /* complete.png in Resources */,
